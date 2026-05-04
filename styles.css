@@ -1,0 +1,268 @@
+/* ============================================================
+   THEME — edit these variables to restyle the whole site
+   ============================================================ */
+:root {
+  /* Colors */
+  --color-bg:          #f66416;   /* page background */
+  --color-surface:     #171a2e;   /* cards, alt sections */
+  --color-text:        #e8ebff;   /* primary text */
+  --color-muted:       #9aa0c3;   /* secondary text */
+  --color-accent:      #7c9cff;   /* links, highlights */
+  --color-accent-warm: #ffc46b;   /* secondary accent */
+  --color-border:      #262a44;
+
+  /* Typography */
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --font-display: "Inter", system-ui, sans-serif;
+
+  /* Sizing / spacing */
+  --radius: 14px;
+  --radius-sm: 8px;
+  --max-width: 1100px;
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2.5rem;
+  --space-5: 4rem;
+  --space-6: 6rem;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,.25);
+  --shadow-md: 0 8px 24px rgba(0,0,0,.35);
+}
+
+/* To switch to a LIGHT theme, replace the values above with these:
+   --color-bg: #fafafa; --color-surface: #ffffff; --color-text: #14162b;
+   --color-muted: #5a5f7a; --color-accent: #4b5fd6; --color-border: #e5e7eb;
+*/
+
+/* ============================================================
+   RESET + BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; display: block; }
+a { color: var(--color-accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+h1, h2, h3 { font-family: var(--font-display); line-height: 1.15; margin: 0 0 var(--space-2); }
+h1 { font-size: clamp(2rem, 5vw, 3.4rem); letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.25rem); letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; }
+p  { margin: 0 0 var(--space-2); color: var(--color-muted); }
+p strong { color: var(--color-text); font-weight: 600; }
+ul { margin: 0; padding: 0; list-style: none; }
+
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+/* ============================================================
+   HEADER / NAV
+   ============================================================ */
+.site-header {
+  position: sticky; top: 0; z-index: 50;
+  background: color-mix(in srgb, var(--color-bg) 85%, transparent);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border);
+}
+.nav {
+  display: flex; align-items: center; justify-content: space-between;
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: var(--space-2) var(--space-3);
+}
+.brand {
+  font-weight: 700; color: var(--color-text); font-size: 1.05rem;
+}
+.nav-links {
+  display: flex; gap: var(--space-3);
+}
+.nav-links a {
+  color: var(--color-muted); font-size: 0.95rem;
+}
+.nav-links a:hover { color: var(--color-text); text-decoration: none; }
+
+.nav-toggle {
+  display: none; background: none; border: 0; padding: 6px; cursor: pointer;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 2px; margin: 4px 0;
+  background: var(--color-text); border-radius: 2px;
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  padding: var(--space-6) 0 var(--space-5);
+  background:
+    radial-gradient(circle at 20% 10%, color-mix(in srgb, var(--color-accent) 18%, transparent), transparent 60%),
+    radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--color-accent-warm) 10%, transparent), transparent 60%);
+}
+.eyebrow {
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.85rem;
+  margin-bottom: var(--space-2);
+}
+.lede {
+  font-size: 1.1rem;
+  max-width: 640px;
+  margin-top: var(--space-3);
+}
+.accent { color: var(--color-accent); }
+
+/* Buttons */
+.cta-row { margin-top: var(--space-3); display: flex; gap: var(--space-2); flex-wrap: wrap; }
+.btn {
+  display: inline-block;
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.95rem;
+  transition: transform 0.1s ease, background 0.2s ease, color 0.2s ease;
+}
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn-primary {
+  background: var(--color-accent);
+  color: #0f1220;
+}
+.btn-primary:hover { background: color-mix(in srgb, var(--color-accent) 85%, white); }
+.btn-ghost {
+  background: transparent;
+  border: 1px solid var(--color-border);
+  color: var(--color-text);
+}
+.btn-ghost:hover { border-color: var(--color-accent); color: var(--color-accent); }
+
+/* ============================================================
+   SECTIONS
+   ============================================================ */
+.section { padding: var(--space-6) 0; }
+.section-alt { background: var(--color-surface); }
+.section-lede { max-width: 640px; margin-bottom: var(--space-4); }
+
+.two-col {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+.facts {
+  display: grid; gap: 0.5rem; margin-top: var(--space-2);
+}
+.facts li {
+  display: flex; justify-content: space-between; gap: var(--space-2);
+  padding: 0.4rem 0;
+  border-bottom: 1px dashed var(--color-border);
+  font-size: 0.95rem;
+}
+.facts li:last-child { border-bottom: 0; }
+.facts li span:first-child { color: var(--color-muted); }
+
+/* ============================================================
+   PROJECTS
+   ============================================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-3);
+}
+.project {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  overflow: hidden;
+  transition: transform 0.15s ease, border-color 0.15s ease;
+}
+.project:hover { transform: translateY(-3px); border-color: var(--color-accent); }
+.project-media {
+  aspect-ratio: 16 / 9;
+  background: linear-gradient(135deg,
+    color-mix(in srgb, var(--color-accent) 30%, var(--color-surface)),
+    var(--color-surface));
+  display: flex; align-items: center; justify-content: center;
+}
+.project-media img { width: 100%; height: 100%; object-fit: cover; }
+.project-body { padding: var(--space-3); }
+.tags {
+  display: flex; flex-wrap: wrap; gap: 0.4rem; margin: var(--space-2) 0;
+}
+.tags li {
+  font-size: 0.75rem;
+  padding: 0.2rem 0.55rem;
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  color: var(--color-accent);
+  border-radius: 999px;
+}
+.project-links {
+  display: flex; gap: var(--space-2); margin-top: var(--space-2);
+  font-size: 0.9rem; font-weight: 600;
+}
+
+/* ============================================================
+   BEYOND WORK
+   ============================================================ */
+.beyond-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--space-3);
+}
+.beyond-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+}
+
+/* ============================================================
+   CONTACT + FOOTER
+   ============================================================ */
+.contact { text-align: center; max-width: 700px; }
+.contact-links {
+  display: flex; justify-content: center; gap: var(--space-3);
+  margin-top: var(--space-3); flex-wrap: wrap;
+  font-weight: 600;
+}
+.site-footer {
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+  color: var(--color-muted);
+  font-size: 0.85rem;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 720px) {
+  .two-col { grid-template-columns: 1fr; }
+  .nav-toggle { display: block; }
+  .nav-links {
+    position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-2) var(--space-3);
+    display: none;
+  }
+  .nav-links.is-open { display: flex; }
+}

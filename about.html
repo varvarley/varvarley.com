@@ -191,6 +191,16 @@
     </div>
   </div>
 
+  <footer class="site-footer">
+    <div class="container">
+      <p>&copy; <span id="year"></span> Var Varley — built with HTML, CSS &amp; coffee. &nbsp;|&nbsp; v0.1.0</p>
+    </div>
+  </footer>
+
   <script src="homestead.js"></script>
+  <script>
+    const yearEl = document.getElementById('year');
+    if (yearEl) yearEl.textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Var's Homestead</title>
+  <meta name="description" content="Explore Var Varley's homestead — click the buildings to learn more." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Press+Start+2P&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+</head>
+<body>
+
+  <!-- ============ HOMESTEAD TOP BAR ============ -->
+  <header class="homestead-bar">
+    <h1 class="homestead-title">Var's Homestead</h1>
+
+    <div class="homestead-stars" aria-hidden="true">
+      🌙
+      <span class="star">★</span>
+      <span class="star">★</span>
+      <span class="star">★</span>
+    </div>
+
+    <!-- TODO: replace # with actual resume URL or PDF path -->
+    <a href="assets/resume.pdf" class="resume-link" target="_blank" rel="noopener">[ résumé ↗ ]</a>
+  </header>
+
+  <nav style="padding:0.6rem 1.5rem; background:var(--color-bg-primary); border-bottom:1px solid var(--color-border);">
+    <a href="index.html" style="font-family:var(--font-pixel);font-size:0.45rem;color:var(--color-text-muted);">← Back to Home</a>
+  </nav>
+
+  <!-- ============ MAP CANVAS ============ -->
+  <div class="map-canvas" role="main" aria-label="Homestead map — click buildings to explore">
+
+    <!-- Dirt paths (SVG) -->
+    <svg class="map-paths" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+      <!-- Horizontal main path -->
+      <rect x="0" y="278" width="1000" height="52" rx="6" fill="#3d2510" opacity="0.85" />
+      <!-- Vertical main path -->
+      <rect x="468" y="0" width="52" height="620" rx="6" fill="#3d2510" opacity="0.85" />
+      <!-- Diagonal to top-left (Varber Shop ~12%, 18%) -->
+      <line x1="468" y1="278" x2="125" y2="125" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
+      <!-- Diagonal to top-right (Varden ~82%, 18%) -->
+      <line x1="520" y1="278" x2="820" y2="125" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
+      <!-- Diagonal to bottom-left (Varcheologist ~18%, 80%) -->
+      <line x1="468" y1="330" x2="200" y2="500" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
+      <!-- Diagonal to bottom-right (Varchitect ~84%, 80%) -->
+      <line x1="520" y1="330" x2="820" y2="500" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
+    </svg>
+
+    <!-- Snow patches -->
+    <div class="snow-patch" style="width:90px;height:40px;top:8%;left:30%;"></div>
+    <div class="snow-patch" style="width:60px;height:28px;top:12%;left:58%;"></div>
+    <div class="snow-patch" style="width:75px;height:32px;top:70%;left:38%;"></div>
+    <div class="snow-patch" style="width:50px;height:22px;top:20%;left:72%;"></div>
+    <div class="snow-patch" style="width:80px;height:34px;top:82%;left:60%;"></div>
+    <div class="snow-patch" style="width:55px;height:24px;top:55%;left:20%;"></div>
+
+    <!-- Pine trees along edges -->
+    <div class="pine" style="left:2%;top:5%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:5%;top:8%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:3%;top:60%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:92%;top:5%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:95%;top:10%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:94%;top:62%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:35%;top:2%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:60%;top:2%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:20%;top:88%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <div class="pine" style="left:70%;top:90%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+
+    <!-- Lantern posts along paths -->
+    <div class="lantern-post" style="left:25%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+    <div class="lantern-post" style="left:38%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+    <div class="lantern-post" style="left:60%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+    <div class="lantern-post" style="left:73%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+    <div class="lantern-post" style="left:46%;top:18%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+    <div class="lantern-post" style="left:46%;top:60%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+
+    <!-- ============ BUILDINGS ============ -->
+
+    <!-- Varber Shop — top-left — Purple tones -->
+    <div class="building" id="b-varber"
+         style="left:13%;top:20%;"
+         onclick="openModal('varber')"
+         role="button" tabindex="0" aria-label="Varber Shop">
+      <div class="b-chimney"></div>
+      <div class="b-roof"></div>
+      <div class="b-body">
+        <div class="b-win b-win-l"></div>
+        <div class="b-win b-win-r"></div>
+        <div class="b-door"></div>
+      </div>
+      <div class="b-sign">✂️</div>
+      <div class="b-label">Varber Shop</div>
+    </div>
+
+    <!-- The Univarsity — top-center — Deep indigo -->
+    <div class="building" id="b-univarsity"
+         style="left:50%;top:12%;"
+         onclick="openModal('univarsity')"
+         role="button" tabindex="0" aria-label="The Univarsity">
+      <div class="b-chimney"></div>
+      <div class="b-roof"></div>
+      <div class="b-body">
+        <div class="b-win b-win-l"></div>
+        <div class="b-win b-win-r"></div>
+        <div class="b-door"></div>
+      </div>
+      <div class="b-sign">🎓</div>
+      <div class="b-label">The Univarsity</div>
+    </div>
+
+    <!-- The Varden — top-right — Deep green -->
+    <div class="building" id="b-varden"
+         style="left:82%;top:20%;"
+         onclick="openModal('varden')"
+         role="button" tabindex="0" aria-label="The Varden">
+      <div class="b-chimney"></div>
+      <div class="b-roof"></div>
+      <div class="b-body">
+        <div class="b-win b-win-l"></div>
+        <div class="b-win b-win-r"></div>
+        <div class="b-door"></div>
+      </div>
+      <div class="b-sign">🌿</div>
+      <div class="b-label">The Varden</div>
+    </div>
+
+    <!-- Var Dealership — middle-left — Forest green -->
+    <div class="building" id="b-dealership"
+         style="left:8%;top:52%;"
+         onclick="openModal('dealership')"
+         role="button" tabindex="0" aria-label="Var Dealership">
+      <div class="b-chimney"></div>
+      <div class="b-roof"></div>
+      <div class="b-body">
+        <div class="b-win b-win-l"></div>
+        <div class="b-win b-win-r"></div>
+        <div class="b-door"></div>
+      </div>
+      <div class="b-sign">🚗</div>
+      <div class="b-label">Var Dealership</div>
+    </div>
+
+    <!-- Varchitect — middle-right — Warm brown -->
+    <div class="building" id="b-varchitect"
+         style="left:87%;top:52%;"
+         onclick="openModal('varchitect')"
+         role="button" tabindex="0" aria-label="Varchitect">
+      <div class="b-chimney"></div>
+      <div class="b-roof"></div>
+      <div class="b-body">
+        <div class="b-win b-win-l"></div>
+        <div class="b-win b-win-r"></div>
+        <div class="b-door"></div>
+      </div>
+      <div class="b-sign">🏗️</div>
+      <div class="b-label">Varchitect</div>
+    </div>
+
+    <!-- Varcheologist — bottom-center — Tan/earthy -->
+    <div class="building" id="b-varcheologist"
+         style="left:22%;top:80%;"
+         onclick="openModal('varcheologist')"
+         role="button" tabindex="0" aria-label="Varcheologist">
+      <div class="b-chimney"></div>
+      <div class="b-roof"></div>
+      <div class="b-body">
+        <div class="b-win b-win-l"></div>
+        <div class="b-win b-win-r"></div>
+        <div class="b-door"></div>
+      </div>
+      <div class="b-sign">🦴</div>
+      <div class="b-label">Varcheologist</div>
+    </div>
+
+  </div><!-- /map-canvas -->
+
+  <!-- ============ MODAL ============ -->
+  <div id="modal-overlay" class="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-box">
+      <button class="modal-close btn" onclick="closeModal()" aria-label="Close">[ X ]</button>
+      <p class="modal-title" id="modal-title"></p>
+      <p class="modal-subtitle" id="modal-subtitle"></p>
+      <p class="modal-body"   id="modal-body"></p>
+      <ul class="modal-tags"  id="modal-tags"></ul>
+    </div>
+  </div>
+
+  <script src="homestead.js"></script>
+</body>
+</html>

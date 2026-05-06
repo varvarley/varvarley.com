@@ -1,8 +1,9 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.1.0
+   Version: 0.1.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
+     0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
    ============================================= */
 
 /* =============================================
@@ -68,6 +69,8 @@
   --font-display: 'Calistoga', serif;
   --font-pixel:   'Press Start 2P', monospace;
   --font-body:    'Lora', serif;
+  /* Brand name only — Orbitron captures the bold geometric GameCube/PlayStation logo feel */
+  --font-brand:   'Orbitron', sans-serif;
 }
 
 /* =============================================
@@ -141,9 +144,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: var(--space-2) var(--space-3);
 }
 
+/* Orbitron bold weight — matches GameCube/PlayStation logo aesthetic */
 .brand {
-  font-family: var(--font-display);
-  font-size: 1.3rem;
+  font-family: var(--font-brand);
+  font-size: 1.1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
   color: var(--color-warm-yellow);
 }
 .brand:hover { color: var(--color-warm-amber); }

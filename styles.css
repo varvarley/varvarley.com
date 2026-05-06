@@ -1,47 +1,51 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.1.1
+   Version: 0.2.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
+     0.2.0 — Alpine glow dark mode; fixed hero scroll-cover effect; white-toned UI
    ============================================= */
 
 /* =============================================
-   COLOR TOKENS — edit here to retheme the site
+   COLOR TOKENS
+   Dark mode is the default. Light mode tokens
+   will be added under [data-theme="light"] later.
+   Edit here to retheme the entire site.
    ============================================= */
 
 :root {
-  /* Backgrounds */
-  --color-bg-primary:  #1a120a;
-  --color-bg-ground:   #1c2e10;
-  --color-bg-surface:  #2d1f0f;
+  /* ── Page backgrounds ── */
+  --color-bg-primary:  #0e0a16;   /* deep midnight — main page bg */
+  --color-bg-surface:  #18102a;   /* slightly lifted surface (cards, alt sections) */
+  --color-bg-elevated: #221838;   /* hover states, modals */
 
-  /* Paths & Wood */
-  --color-path:        #3d2510;
-  --color-wood-dark:   #3d2510;
-  --color-wood-mid:    #5c3820;
-  --color-wood-light:  #8b5e38;
+  /* ── Alpine glow palette (used in hero gradient + accents) ── */
+  --color-alpine-sky:    #0e0818;  /* top of sky, near black-purple */
+  --color-alpine-violet: #3d1450;  /* upper sky purple */
+  --color-alpine-rose:   #c02860;  /* horizon rose — primary accent */
+  --color-alpine-ember:  #e86018;  /* orange ember glow */
+  --color-alpine-dark:   #090608;  /* mountain silhouette / foreground */
 
-  /* Warm Accents */
-  --color-warm-amber:  #e8a030;
-  --color-warm-orange: #c86020;
-  --color-warm-yellow: #f0c060;
-  --color-lantern:     #f8d080;
+  /* ── Text — white-toned ── */
+  --color-text-primary: #f0ecf8;   /* near white with slight lavender */
+  --color-text-muted:   #8878a8;   /* muted purple-grey */
+  --color-text-accent:  #d8c8f0;   /* bright lavender-white for highlights */
 
-  /* Nature */
-  --color-snow:  #c8d8c0;
-  --color-grass: #1e2e12;
+  /* ── Borders ── */
+  --color-border:      #2e1e40;   /* subtle dark purple border */
+  --color-border-warm: #3e2858;   /* slightly brighter border */
 
-  /* Text */
-  --color-text-primary: #d4c4a0;
-  --color-text-muted:   #8b7a60;
-  --color-text-accent:  #f0c060;
+  /* ── Homestead map (keep earthy) ── */
+  --color-bg-ground:  #1c2e10;    /* grass background on homestead map */
+  --color-path:       #3d2510;
+  --color-wood-dark:  #3d2510;
+  --color-wood-mid:   #5c3820;
+  --color-wood-light: #8b5e38;
+  --color-snow:       #c8d8c0;
+  --color-lantern:    #f8d080;
 
-  /* Borders */
-  --color-border:      #3a2810;
-  --color-border-warm: #5c4530;
-
-  /* Sizing / spacing */
+  /* ── Sizing / spacing ── */
   --max-width: 1100px;
   --space-1: 0.5rem;
   --space-2: 1rem;
@@ -49,28 +53,28 @@
   --space-4: 2.5rem;
   --space-5: 4rem;
   --space-6: 6rem;
-  --radius:    6px;
+  --radius:    8px;
   --radius-sm: 4px;
 
-  /* Shadows */
-  --shadow-warm: 0 4px 20px rgba(232, 160, 48, 0.18);
-  --shadow-deep: 0 8px 32px rgba(0, 0, 0, 0.6);
+  /* ── Shadows ── */
+  --shadow-glow:  0 4px 24px rgba(192, 40, 96, 0.2);
+  --shadow-deep:  0 8px 40px rgba(0, 0, 0, 0.7);
+  --shadow-card:  0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.04);
 }
 
 /* =============================================
    TYPOGRAPHY
-   Import from Google Fonts in each HTML file:
-   - Calistoga       (display / headlines)
-   - Press Start 2P  (pixel UI labels — sparingly)
-   - Lora            (body text)
+   - Calistoga      → display / headlines
+   - Press Start 2P → pixel labels & buttons (sparingly)
+   - Lora           → body text
+   - Orbitron       → brand name (.brand) only
    ============================================= */
 
 :root {
   --font-display: 'Calistoga', serif;
   --font-pixel:   'Press Start 2P', monospace;
   --font-body:    'Lora', serif;
-  /* Brand name only — Orbitron captures the bold geometric GameCube/PlayStation logo feel */
-  --font-brand:   'Orbitron', sans-serif;
+  --font-brand:   'Orbitron', sans-serif;  /* GameCube/PlayStation-style brand name */
 }
 
 /* =============================================
@@ -87,24 +91,25 @@ body {
   color: var(--color-text-primary);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
 }
 
-/* Grain overlay — bridges analog and retro-digital feel */
+/* Film-grain overlay — subtle texture over everything */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 9999;
-  opacity: 0.04;
+  opacity: 0.035;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-size: 256px 256px;
 }
 
 img { max-width: 100%; display: block; }
 
-a { color: var(--color-warm-amber); text-decoration: none; }
-a:hover { color: var(--color-warm-yellow); }
+a { color: var(--color-text-accent); text-decoration: none; }
+a:hover { color: var(--color-text-primary); }
 
 h1, h2, h3 {
   font-family: var(--font-display);
@@ -128,13 +133,24 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 /* =============================================
    HEADER / NAV
+   Fixed — floats above the hero and scroll content.
+   Transparent at top of page, solid once user scrolls.
    ============================================= */
 
 .site-header {
-  position: sticky; top: 0; z-index: 50;
-  background: color-mix(in srgb, var(--color-bg-primary) 88%, transparent);
-  backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--color-border);
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 50;
+  background: transparent;
+  border-bottom: 1px solid transparent;
+  transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
+}
+
+/* Added by JS once the user scrolls past the hero */
+.site-header.scrolled {
+  background: color-mix(in srgb, var(--color-bg-primary) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom-color: var(--color-border);
 }
 
 .nav {
@@ -144,29 +160,51 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding: var(--space-2) var(--space-3);
 }
 
-/* Orbitron bold weight — matches GameCube/PlayStation logo aesthetic */
+/* Brand — Orbitron bold, GameCube/PlayStation feel */
 .brand {
   font-family: var(--font-brand);
   font-size: 1.1rem;
   font-weight: 700;
   letter-spacing: 0.04em;
-  color: var(--color-warm-yellow);
+  color: var(--color-text-primary);
 }
-.brand:hover { color: var(--color-warm-amber); }
+.brand:hover { color: var(--color-text-accent); }
+
+.nav-right { display: flex; align-items: center; gap: var(--space-3); }
 
 .nav-links { display: flex; gap: var(--space-3); }
 
 .nav-links a {
   font-family: var(--font-pixel);
   font-size: 0.5rem;
-  color: var(--color-text-muted);
+  color: rgba(240, 236, 248, 0.7);
   letter-spacing: 0.05em;
 }
-.nav-links a:hover  { color: var(--color-warm-yellow); }
+.nav-links a:hover  { color: var(--color-text-primary); }
 .nav-links a.active {
-  color: var(--color-warm-amber);
-  border-bottom: 2px solid var(--color-warm-amber);
+  color: var(--color-text-primary);
+  border-bottom: 2px solid var(--color-text-primary);
   padding-bottom: 2px;
+}
+
+/* ── Dark/Light mode toggle ──
+   Currently dark mode only. Light mode tokens
+   will be added under [data-theme="light"] in a future update.
+   ─────────────────────────────────────────── */
+.theme-toggle {
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  background: transparent;
+  border: 1px solid var(--color-border-warm);
+  color: var(--color-text-muted);
+  padding: 0.4rem 0.65rem;
+  cursor: pointer;
+  letter-spacing: 0.04em;
+  transition: border-color 0.15s ease, color 0.15s ease;
+}
+.theme-toggle:hover {
+  border-color: var(--color-text-accent);
+  color: var(--color-text-primary);
 }
 
 .nav-toggle {
@@ -178,7 +216,151 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =============================================
-   BUTTONS — chunky, beveled, "pressed" on hover
+   HERO — Fixed behind everything.
+   The .scroll-content slides over it as the user scrolls.
+   ============================================= */
+
+.hero {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  height: 100vh;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  /* Alpine glow gradient — mirrors the DMAlpineGlow reference:
+     deep midnight at top → violet → rose → ember orange → dark silhouette */
+  background:
+    linear-gradient(
+      180deg,
+      #0e0818 0%,
+      #1a0c28 12%,
+      #3d1450 28%,
+      #701848 40%,
+      #b82858 52%,
+      #d84020 63%,
+      #e86018 70%,
+      #b03010 78%,
+      #090608 100%
+    );
+}
+
+/* Stars in the upper sky */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 45% 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1.5px 1.5px at 8%  12%, rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 18% 8%,  rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 30% 18%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(2px   2px   at 42% 6%,  rgba(255,255,255,0.8) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 55% 14%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 65% 9%,  rgba(255,255,255,0.7) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 75% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(2px   2px   at 88% 7%,  rgba(255,255,255,0.9) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 93% 16%, rgba(255,255,255,0.5) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 22% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
+    radial-gradient(1.5px 1.5px at 50% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
+    radial-gradient(1px   1px   at 80% 28%, rgba(255,255,255,0.4) 0%, transparent 100%);
+}
+
+/* Hero text content */
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding-top: 60px; /* clear the fixed nav */
+}
+
+/* Mountain silhouette — CSS clip-path, no image needed */
+.hero-mountains {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 42%;
+  background: var(--color-alpine-dark);
+  clip-path: polygon(
+    0%   100%,
+    0%   80%,
+    3%   78%,
+    5%   72%,
+    8%   65%,
+    10%  58%,
+    13%  50%,
+    15%  56%,
+    17%  46%,
+    20%  34%,
+    22%  42%,
+    24%  30%,
+    27%  18%,
+    29%  28%,
+    32%  40%,
+    34%  32%,
+    37%  22%,
+    40%  12%,
+    42%  20%,
+    44%  30%,
+    46%  24%,
+    48%  14%,
+    50%  8%,
+    52%  14%,
+    54%  24%,
+    56%  32%,
+    58%  22%,
+    61%  12%,
+    64%  22%,
+    66%  32%,
+    68%  26%,
+    71%  16%,
+    74%  26%,
+    77%  38%,
+    79%  28%,
+    82%  40%,
+    84%  52%,
+    87%  44%,
+    90%  54%,
+    92%  62%,
+    95%  68%,
+    97%  72%,
+    100% 70%,
+    100% 100%
+  );
+}
+
+.eyebrow {
+  font-family: var(--font-pixel);
+  font-size: 0.5rem;
+  color: rgba(240,236,248,0.6);
+  letter-spacing: 0.15em;
+  margin-bottom: var(--space-2);
+}
+
+.lede {
+  font-size: 1.1rem;
+  max-width: 600px;
+  margin-top: var(--space-2);
+  color: rgba(240, 236, 248, 0.75);
+}
+
+.location {
+  display: inline-block;
+  margin-top: var(--space-2);
+  font-family: var(--font-pixel);
+  font-size: 0.45rem;
+  color: rgba(240,236,248,0.5);
+  letter-spacing: 0.08em;
+}
+
+.accent { color: var(--color-alpine-rose); }
+
+.cta-row {
+  margin-top: var(--space-4);
+  display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;
+}
+
+/* =============================================
+   BUTTONS — chunky pixel style, white-toned
    ============================================= */
 
 .btn {
@@ -195,68 +377,43 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .btn:hover { text-decoration: none; transform: translateY(2px); }
 
+/* Primary — white background, dark text */
 .btn-primary {
-  background: var(--color-warm-amber);
+  background: var(--color-text-primary);
   color: var(--color-bg-primary);
-  box-shadow: 0 4px 0 var(--color-warm-orange);
+  box-shadow: 0 4px 0 rgba(200,200,220,0.4);
 }
 .btn-primary:hover {
   color: var(--color-bg-primary);
-  box-shadow: 0 2px 0 var(--color-warm-orange);
+  box-shadow: 0 2px 0 rgba(200,200,220,0.4);
 }
 
+/* Ghost — white border, white text */
 .btn-ghost {
   background: transparent;
-  border: 2px solid var(--color-border-warm);
+  border: 2px solid rgba(240,236,248,0.35);
   color: var(--color-text-primary);
-  box-shadow: 0 4px 0 var(--color-border);
+  box-shadow: 0 4px 0 rgba(0,0,0,0.3);
 }
 .btn-ghost:hover {
-  border-color: var(--color-warm-amber);
-  color: var(--color-warm-amber);
-  box-shadow: 0 2px 0 var(--color-border);
+  border-color: var(--color-text-primary);
+  color: var(--color-text-primary);
+  box-shadow: 0 2px 0 rgba(0,0,0,0.3);
 }
 
 /* =============================================
-   HERO
+   SCROLL CONTENT
+   Slides up over the fixed hero as the user scrolls.
+   Rounded top corners + shadow give a "card lifting" feel.
    ============================================= */
 
-.hero {
-  padding: var(--space-6) 0 var(--space-5);
-  background:
-    radial-gradient(ellipse at 25% 40%, rgba(232,160,48,0.07) 0%, transparent 60%),
-    radial-gradient(ellipse at 80% 20%, rgba(200,96,32,0.05) 0%, transparent 55%);
-}
-
-.eyebrow {
-  font-family: var(--font-pixel);
-  font-size: 0.5rem;
-  color: var(--color-warm-amber);
-  letter-spacing: 0.15em;
-  margin-bottom: var(--space-2);
-}
-
-.lede {
-  font-size: 1.1rem;
-  max-width: 620px;
-  margin-top: var(--space-2);
-  color: var(--color-text-muted);
-}
-
-.location {
-  display: inline-block;
-  margin-top: var(--space-2);
-  font-family: var(--font-pixel);
-  font-size: 0.45rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.08em;
-}
-
-.accent { color: var(--color-warm-amber); }
-
-.cta-row {
-  margin-top: var(--space-4);
-  display: flex; gap: var(--space-2); flex-wrap: wrap; align-items: center;
+.scroll-content {
+  position: relative;
+  z-index: 1;
+  margin-top: 100vh;
+  background: var(--color-bg-primary);
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.7);
 }
 
 /* =============================================
@@ -268,6 +425,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   overflow: hidden;
   background: var(--color-bg-primary);
   position: relative;
+  border-radius: 20px 20px 0 0; /* matches scroll-content top */
 }
 .divider::before {
   content: '';
@@ -309,13 +467,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: start;
 }
 
-/* Cards styled like wooden plaques */
+/* Cards — subtle glass-like surface */
 .card {
-  background: var(--color-bg-surface);
-  border: 2px solid var(--color-border-warm);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-warm);
   border-radius: var(--radius);
   padding: var(--space-3);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.4), inset 0 1px 0 rgba(232,160,48,0.08);
+  box-shadow: var(--shadow-card);
 }
 
 .facts { display: grid; gap: 0.5rem; margin-top: var(--space-2); }
@@ -341,36 +499,35 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .project {
   background: var(--color-bg-surface);
-  border: 2px solid var(--color-border-warm);
+  border: 1px solid var(--color-border-warm);
   border-radius: var(--radius);
   overflow: hidden;
   transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
 }
 .project:hover {
   transform: translateY(-4px);
-  border-color: var(--color-warm-amber);
-  box-shadow: var(--shadow-warm);
+  border-color: rgba(240,236,248,0.3);
+  box-shadow: var(--shadow-glow);
 }
 
 .project-media {
   aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, var(--color-wood-dark), var(--color-bg-surface));
+  background: linear-gradient(135deg, var(--color-alpine-violet), var(--color-bg-surface));
   display: flex; align-items: center; justify-content: center;
 }
 .project-media img { width: 100%; height: 100%; object-fit: cover; }
 
 .project-body { padding: var(--space-3); }
 
-.tags {
-  display: flex; flex-wrap: wrap; gap: 0.4rem; margin: var(--space-2) 0;
-}
+/* Tags — pixel pill labels */
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: var(--space-2) 0; }
 .tags li {
   font-family: var(--font-pixel);
   font-size: 0.4rem;
   padding: 0.35rem 0.6rem;
-  background: rgba(232,160,48,0.1);
-  color: var(--color-warm-amber);
-  border: 1px solid rgba(232,160,48,0.25);
+  background: rgba(240,236,248,0.07);
+  color: var(--color-text-accent);
+  border: 1px solid rgba(240,236,248,0.15);
   border-radius: 2px;
 }
 
@@ -392,12 +549,12 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .beyond-card {
   background: var(--color-bg-surface);
-  border: 2px solid var(--color-border-warm);
+  border: 1px solid var(--color-border-warm);
   border-radius: var(--radius);
   padding: var(--space-3);
-  box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+  box-shadow: var(--shadow-card);
 }
-.beyond-card h3 { color: var(--color-warm-yellow); }
+.beyond-card h3 { color: var(--color-text-accent); }
 
 /* =============================================
    CONTACT + FOOTER
@@ -432,26 +589,20 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex; align-items: center; justify-content: space-between;
   padding: var(--space-2) var(--space-3);
   background: var(--color-bg-surface);
-  border-bottom: 2px solid var(--color-border-warm);
+  border-bottom: 1px solid var(--color-border-warm);
   position: sticky; top: 0; z-index: 50;
 }
 
 .homestead-title {
   font-family: var(--font-display);
   font-size: 1.4rem;
-  color: var(--color-warm-yellow);
+  color: var(--color-text-primary);
   margin: 0;
 }
 
-.homestead-stars {
-  display: flex; align-items: center; gap: 0.6rem;
-  font-size: 1rem;
-}
+.homestead-stars { display: flex; align-items: center; gap: 0.6rem; font-size: 1rem; }
 
-.star {
-  display: inline-block;
-  animation: twinkle 2.5s ease-in-out infinite;
-}
+.star { display: inline-block; animation: twinkle 2.5s ease-in-out infinite; }
 .star:nth-child(2) { animation-delay: 0.8s; }
 .star:nth-child(3) { animation-delay: 1.6s; }
 
@@ -467,7 +618,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   border: 1px solid var(--color-border-warm);
   padding: 0.4rem 0.7rem;
 }
-.resume-link:hover { color: var(--color-warm-yellow); border-color: var(--color-warm-amber); }
+.resume-link:hover { color: var(--color-text-primary); border-color: rgba(240,236,248,0.4); }
 
 /* =============================================
    HOMESTEAD MAP CANVAS
@@ -493,12 +644,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   z-index: 1;
 }
 
-/* SVG dirt paths sit at z-index 2 */
-.map-paths {
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  z-index: 2;
-}
+.map-paths { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 2; }
 
 /* Snow patches */
 .snow-patch {
@@ -511,15 +657,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =============================================
-   PIXEL PINE TREES — CSS-only, no images
+   PIXEL PINE TREES — CSS only, no images
    ============================================= */
 
-.pine {
-  position: absolute;
-  display: flex; flex-direction: column; align-items: center;
-  z-index: 4;
-  pointer-events: none;
-}
+.pine { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 4; pointer-events: none; }
 .pine-top, .pine-mid, .pine-bot {
   width: 0; height: 0;
   border-left-style: solid; border-right-style: solid;
@@ -530,26 +671,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .pine-top { border-width: 0 7px 12px; }
 .pine-mid { border-width: 0 9px 14px; border-bottom-color: #1a3a0e; }
 .pine-bot { border-width: 0 11px 16px; border-bottom-color: #183608; }
-.pine-trunk {
-  width: 5px; height: 7px;
-  background: var(--color-wood-dark);
-  margin-top: -1px;
-}
+.pine-trunk { width: 5px; height: 7px; background: var(--color-wood-dark); margin-top: -1px; }
 
 /* =============================================
    LANTERN POSTS
    ============================================= */
 
-.lantern-post {
-  position: absolute;
-  display: flex; flex-direction: column; align-items: center;
-  z-index: 5;
-  pointer-events: none;
-}
-.lantern-pole {
-  width: 3px; height: 36px;
-  background: var(--color-wood-mid);
-}
+.lantern-post { position: absolute; display: flex; flex-direction: column; align-items: center; z-index: 5; pointer-events: none; }
+.lantern-pole { width: 3px; height: 36px; background: var(--color-wood-mid); }
 .lantern-glow {
   width: 14px; height: 14px;
   background: var(--color-lantern);
@@ -557,17 +686,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: 0 0 10px 4px rgba(248,208,128,0.55), 0 0 20px 8px rgba(248,208,128,0.25);
   animation: flicker 3s ease-in-out infinite;
 }
-.lantern-post:nth-child(odd)  .lantern-glow { animation-delay: 0.7s; }
-.lantern-post:nth-child(3n)   .lantern-glow { animation-delay: 1.4s; }
+.lantern-post:nth-child(odd) .lantern-glow { animation-delay: 0.7s; }
+.lantern-post:nth-child(3n)  .lantern-glow { animation-delay: 1.4s; }
 
 @keyframes flicker {
   0%, 100% { opacity: 1;   box-shadow: 0 0 10px 4px rgba(248,208,128,0.55), 0 0 20px 8px rgba(248,208,128,0.25); }
   30%       { opacity: 0.7; box-shadow: 0 0 6px 2px rgba(248,208,128,0.35), 0 0 12px 4px rgba(248,208,128,0.15); }
-  70%       { opacity: 0.9; box-shadow: 0 0 14px 6px rgba(248,208,128,0.6),  0 0 24px 10px rgba(248,208,128,0.3); }
+  70%       { opacity: 0.9; box-shadow: 0 0 14px 6px rgba(248,208,128,0.6), 0 0 24px 10px rgba(248,208,128,0.3); }
 }
 
 /* =============================================
-   BUILDINGS — CSS-only structures, no images
+   BUILDINGS — CSS-only, no images
    ============================================= */
 
 .building {
@@ -579,64 +708,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   transform: translate(-50%, -50%);
 }
 .building:hover { transform: translate(-50%, -50%) scale(1.08) translateY(-3px); z-index: 20; }
-.building:hover .b-label { color: var(--color-warm-yellow); }
+.building:hover .b-label { color: var(--color-text-primary); }
 
-.b-chimney {
-  width: 8px; height: 12px;
-  align-self: flex-end;
-  margin-right: 14px;
-  margin-bottom: -2px;
-}
-
-.b-roof {
-  width: 0; height: 0;
-  border-left: 38px solid transparent;
-  border-right: 38px solid transparent;
-  border-bottom-width: 28px;
-  border-bottom-style: solid;
-  border-bottom-color: var(--color-wood-mid);
-}
-
-.b-body {
-  width: 66px; height: 52px;
-  border-width: 2px; border-style: solid;
-  border-color: var(--color-border-warm);
-  position: relative;
-  display: flex; align-items: flex-end; justify-content: center;
-  padding-bottom: 0;
-}
-
-.b-door {
-  width: 14px; height: 22px;
-  border-width: 1px; border-style: solid;
-  border-radius: 2px 2px 0 0;
-  position: absolute; bottom: 0;
-}
-
-.b-win {
-  width: 12px; height: 10px;
-  border-width: 1px; border-style: solid;
-  position: absolute; top: 10px;
-}
-.b-win-l { left: 8px; }
-.b-win-r { right: 8px; }
-
-.b-sign {
-  font-size: 1.1rem;
-  line-height: 1;
-  margin-top: 3px;
-}
-
-.b-label {
-  font-family: var(--font-pixel);
-  font-size: 0.32rem;
-  color: var(--color-text-primary);
-  margin-top: 5px;
-  white-space: nowrap;
-  text-align: center;
-  transition: color 0.15s ease;
-  letter-spacing: 0.04em;
-}
+.b-chimney { width: 8px; height: 12px; align-self: flex-end; margin-right: 14px; margin-bottom: -2px; }
+.b-roof    { width: 0; height: 0; border-left: 38px solid transparent; border-right: 38px solid transparent; border-bottom-width: 28px; border-bottom-style: solid; border-bottom-color: var(--color-wood-mid); }
+.b-body    { width: 66px; height: 52px; border-width: 2px; border-style: solid; border-color: var(--color-border-warm); position: relative; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 0; }
+.b-door    { width: 14px; height: 22px; border-width: 1px; border-style: solid; border-radius: 2px 2px 0 0; position: absolute; bottom: 0; }
+.b-win     { width: 12px; height: 10px; border-width: 1px; border-style: solid; position: absolute; top: 10px; }
+.b-win-l   { left: 8px; }
+.b-win-r   { right: 8px; }
+.b-sign    { font-size: 1.1rem; line-height: 1; margin-top: 3px; }
+.b-label   { font-family: var(--font-pixel); font-size: 0.32rem; color: var(--color-text-muted); margin-top: 5px; white-space: nowrap; text-align: center; transition: color 0.15s ease; letter-spacing: 0.04em; }
 
 /* Per-building color palettes */
 #b-varber .b-roof         { border-bottom-color: #6a3e70; }
@@ -681,24 +763,20 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .modal-overlay {
   position: fixed; inset: 0;
-  background: rgba(10,6,3,0.75);
+  background: rgba(8,4,14,0.8);
   z-index: 100;
   display: flex; align-items: center; justify-content: center;
-  opacity: 0;
-  pointer-events: none;
+  opacity: 0; pointer-events: none;
   transition: opacity 0.2s ease;
   padding: var(--space-3);
 }
-.modal-overlay.is-open {
-  opacity: 1;
-  pointer-events: all;
-}
+.modal-overlay.is-open { opacity: 1; pointer-events: all; }
 
 .modal-box {
   background: var(--color-bg-surface);
-  border: 2px solid var(--color-warm-amber);
+  border: 1px solid var(--color-border-warm);
   border-radius: var(--radius);
-  box-shadow: 0 0 40px rgba(232,160,48,0.2), var(--shadow-deep);
+  box-shadow: 0 0 60px rgba(184,40,88,0.15), var(--shadow-deep);
   width: 100%; max-width: 520px;
   padding: var(--space-4);
   transform: translateY(8px);
@@ -707,56 +785,24 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .modal-overlay.is-open .modal-box { transform: translateY(0); }
 
-.modal-title {
-  font-family: var(--font-display);
-  font-size: 1.8rem;
-  color: var(--color-warm-yellow);
-  margin: 0 0 var(--space-1);
-}
-.modal-subtitle {
-  font-family: var(--font-pixel);
-  font-size: 0.4rem;
-  color: var(--color-text-muted);
-  letter-spacing: 0.08em;
-  margin-bottom: var(--space-3);
-}
-.modal-body {
-  color: var(--color-text-muted);
-  font-style: italic;
-  margin-bottom: var(--space-3);
-  line-height: 1.7;
-}
-.modal-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: var(--space-4); }
-.modal-tags li {
-  font-family: var(--font-pixel);
-  font-size: 0.38rem;
-  padding: 0.3rem 0.55rem;
-  background: rgba(232,160,48,0.1);
-  color: var(--color-warm-amber);
-  border: 1px solid rgba(232,160,48,0.25);
-  border-radius: 2px;
-}
+.modal-title    { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-text-primary); margin: 0 0 var(--space-1); }
+.modal-subtitle { font-family: var(--font-pixel); font-size: 0.4rem; color: var(--color-text-muted); letter-spacing: 0.08em; margin-bottom: var(--space-3); }
+.modal-body     { color: var(--color-text-muted); font-style: italic; margin-bottom: var(--space-3); line-height: 1.7; }
+.modal-tags     { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: var(--space-4); }
+.modal-tags li  { font-family: var(--font-pixel); font-size: 0.38rem; padding: 0.3rem 0.55rem; background: rgba(240,236,248,0.06); color: var(--color-text-accent); border: 1px solid rgba(240,236,248,0.15); border-radius: 2px; }
 
 .modal-close {
   font-family: var(--font-pixel);
   font-size: 0.5rem;
-  position: absolute;
-  top: var(--space-2);
-  right: var(--space-2);
+  position: absolute; top: var(--space-2); right: var(--space-2);
   padding: 0.4rem 0.7rem;
   background: transparent;
   border: 1px solid var(--color-border-warm);
   color: var(--color-text-muted);
   cursor: pointer;
-  box-shadow: none;
-  transform: none;
+  box-shadow: none; transform: none;
 }
-.modal-close:hover {
-  border-color: var(--color-warm-amber);
-  color: var(--color-warm-amber);
-  transform: none;
-  box-shadow: none;
-}
+.modal-close:hover { border-color: var(--color-text-accent); color: var(--color-text-primary); transform: none; box-shadow: none; }
 
 /* =============================================
    RESPONSIVE
@@ -779,7 +825,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   .nav-links a { font-size: 0.6rem; }
 
   .map-canvas { height: 500px; }
-
   .homestead-bar { flex-wrap: wrap; gap: var(--space-1); }
   .homestead-stars { order: 3; width: 100%; justify-content: center; }
+
+  .hero-content h1 { font-size: 2.2rem; }
 }

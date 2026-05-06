@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Var Varley</title>
-  <meta name="description" content="Personal portfolio of Var Varley — Information Systems & Data Analytics at Utah State University." />
+  <title>Josh Varley</title>
+  <meta name="description" content="Personal portfolio of Josh Varley — Information Systems & Data Analytics at Utah State University." />
 
-  <meta property="og:title"       content="Var Varley" />
+  <meta property="og:title"       content="Josh Varley" />
   <meta property="og:description" content="Information Systems & Data Analytics. Building with AI agents." />
   <meta property="og:type"        content="website" />
   <meta property="og:url"         content="https://varvarley.com" />
 
+  <!-- Calistoga: headlines | Orbitron: brand | Press Start 2P: pixel labels | Lora: body -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <!-- Calistoga: display headlines | Press Start 2P: pixel labels | Lora: body | Orbitron: brand name only -->
   <link href="https://fonts.googleapis.com/css2?family=Calistoga&family=Orbitron:wght@700&family=Press+Start+2P&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css" />
@@ -20,26 +20,45 @@
 </head>
 <body>
 
-  <!-- ============ NAV ============ -->
-  <header class="site-header">
+  <!-- ============ NAV ============
+       Fixed at top, transparent over hero.
+       JS adds .scrolled class once user scrolls,
+       making the background solid.
+  ================================ -->
+  <header class="site-header" id="site-header">
     <nav class="nav" aria-label="Primary">
       <a href="index.html" class="brand">Josh Varley</a>
+
       <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
         <span></span><span></span><span></span>
       </button>
-      <ul class="nav-links">
-        <li><a href="index.html" class="active">Main</a></li>
-        <li><a href="about.html">The Homestead</a></li>
-      </ul>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html" class="active">Main</a></li>
+          <li><a href="about.html">The Homestead</a></li>
+        </ul>
+
+        <!-- Dark/light mode toggle.
+             Light mode tokens are a future TODO — dark is the only mode for now. -->
+        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">
+          [ 🌙 Dark ]
+        </button>
+      </div>
     </nav>
   </header>
 
-  <!-- ============ HERO ============ -->
-  <section id="top" class="hero">
-    <div class="container">
+
+  <!-- ============ HERO ============
+       Position: fixed (z-index 0).
+       Stays behind everything — the .scroll-content
+       slides up over it as the user scrolls down.
+  ================================ -->
+  <section class="hero" aria-label="Hero">
+    <div class="hero-content container">
       <p class="eyebrow">Welcome</p>
       <h1>People call me Var.</h1>
-      <!-- TODO: 1–2 sentence personal intro — who you are, what you do -->
+      <!-- TODO: Replace with your 1–2 sentence personal intro -->
       <p class="lede">
         Information Systems &amp; Data Analytics at Utah State University.
         I build data-driven systems and autonomous agents that turn messy
@@ -51,149 +70,155 @@
         <a class="btn btn-ghost" href="assets/resume.pdf" target="_blank" rel="noopener">Download Resume</a>
       </div>
     </div>
+
+    <!-- Mountain silhouette at the bottom of the hero — CSS clip-path, no image -->
+    <div class="hero-mountains" aria-hidden="true"></div>
   </section>
 
-  <!-- Pixel treeline divider -->
-  <div class="divider" aria-hidden="true"></div>
 
-  <!-- ============ ABOUT ============ -->
-  <section id="about" class="section section-alt">
-    <div class="container two-col">
-      <div>
-        <h2>About</h2>
-        <p>
-          I'm finishing a dual major in <strong>Information Systems</strong> and
-          <strong>Data Analytics</strong> at Utah State University. My work sits at the
-          intersection of data, decisions, and automation — I care about building tools
-          people actually use.
-        </p>
-        <p>
-          Right now I'm especially interested in <strong>AI agents</strong>: systems that
-          reason, use tools, and carry out multi-step work on behalf of a user. This site
-          is my home for those experiments.
-        </p>
-      </div>
-      <aside class="card">
-        <h3>Quick facts</h3>
-        <ul class="facts">
-          <li><span>School</span><span>Utah State University</span></li>
-          <li><span>Majors</span><span>IS &amp; Data Analytics</span></li>
-          <li><span>Graduating</span><span>May 2026</span></li>
-          <li><span>Focus</span><span>AI agents, analytics</span></li>
-          <li><span>Based in</span><span>Logan, UT</span></li>
-        </ul>
-      </aside>
-    </div>
-  </section>
+  <!-- ============ SCROLL CONTENT ============
+       margin-top: 100vh pushes this below the viewport.
+       As the user scrolls, this slides up over the fixed hero.
+       border-radius + box-shadow give a "card lifting" feel.
+  =========================================== -->
+  <div class="scroll-content">
 
-  <!-- ============ PROJECTS ============ -->
-  <section id="projects" class="section">
-    <div class="container">
-      <h2>Projects</h2>
-      <p class="section-lede">Things I've built. Click through for a write-up, code, or a demo video.</p>
+    <!-- Pixel treeline divider at the top of the scroll content -->
+    <div class="divider" aria-hidden="true"></div>
 
-      <div class="project-grid">
-
-        <!-- Duplicate this <article> block for each new project -->
-        <article class="project">
-          <div class="project-media">
-            <img src="assets/project-1.svg" alt="Screenshot of project one" />
-          </div>
-          <div class="project-body">
-            <h3>Project One</h3>
-            <p>Short, punchy description of what the agent does and what problem it solves.</p>
-            <ul class="tags">
-              <li>Python</li><li>LangChain</li><li>AWS</li>
-            </ul>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">Code →</a>
-              <a href="#" target="_blank" rel="noopener">Demo →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media">
-            <img src="assets/project-2.svg" alt="Screenshot of project two" />
-          </div>
-          <div class="project-body">
-            <h3>Project Two</h3>
-            <p>Short, punchy description of what the agent does and what problem it solves.</p>
-            <ul class="tags">
-              <li>SQL</li><li>Tableau</li><li>OpenAI API</li>
-            </ul>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">Code →</a>
-              <a href="#" target="_blank" rel="noopener">Write-up →</a>
-            </div>
-          </div>
-        </article>
-
-        <article class="project">
-          <div class="project-media">
-            <img src="assets/project-3.svg" alt="Screenshot of project three" />
-          </div>
-          <div class="project-body">
-            <h3>Project Three</h3>
-            <p>Short, punchy description of what the agent does and what problem it solves.</p>
-            <ul class="tags">
-              <li>Power BI</li><li>Python</li>
-            </ul>
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener">Code →</a>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- TODO: Section — e.g. featured project, quick links, or a teaser -->
-
-  <!-- TODO: Section — e.g. currently working on / recent activity -->
-
-  <!-- ============ BEYOND WORK ============ -->
-  <section id="beyond" class="section section-alt">
-    <div class="container">
-      <h2>Beyond Work</h2>
-      <p class="section-lede">Stuff I'm into when I'm not at a keyboard.</p>
-
-      <div class="beyond-grid">
-        <div class="beyond-card">
-          <h3>Hobby one</h3>
-          <p>A sentence or two about something you love doing. Keep it human.</p>
+    <!-- ============ ABOUT ============ -->
+    <section id="about" class="section section-alt">
+      <div class="container two-col">
+        <div>
+          <h2>About</h2>
+          <p>
+            I'm finishing a dual major in <strong>Information Systems</strong> and
+            <strong>Data Analytics</strong> at Utah State University. My work sits at the
+            intersection of data, decisions, and automation — I care about building tools
+            people actually use.
+          </p>
+          <p>
+            Right now I'm especially interested in <strong>AI agents</strong>: systems that
+            reason, use tools, and carry out multi-step work on behalf of a user. This site
+            is my home for those experiments.
+          </p>
         </div>
-        <div class="beyond-card">
-          <h3>Hobby two</h3>
-          <p>Another thing you enjoy — travel, music, sports, cooking, reading, etc.</p>
-        </div>
-        <div class="beyond-card">
-          <h3>Hobby three</h3>
-          <p>One more — maybe a project or interest totally unrelated to data.</p>
+        <aside class="card">
+          <h3>Quick facts</h3>
+          <ul class="facts">
+            <li><span>School</span><span>Utah State University</span></li>
+            <li><span>Majors</span><span>IS &amp; Data Analytics</span></li>
+            <li><span>Graduating</span><span>May 2026</span></li>
+            <li><span>Focus</span><span>AI agents, analytics</span></li>
+            <li><span>Based in</span><span>Logan, UT</span></li>
+          </ul>
+        </aside>
+      </div>
+    </section>
+
+    <!-- ============ PROJECTS ============ -->
+    <section id="projects" class="section">
+      <div class="container">
+        <h2>Projects</h2>
+        <p class="section-lede">Things I've built. Click through for a write-up, code, or a demo video.</p>
+
+        <div class="project-grid">
+
+          <!-- Duplicate this <article> block for each new project -->
+          <article class="project">
+            <div class="project-media">
+              <img src="assets/project-1.svg" alt="Screenshot of project one" />
+            </div>
+            <div class="project-body">
+              <h3>Project One</h3>
+              <p>Short, punchy description of what the agent does and what problem it solves.</p>
+              <ul class="tags"><li>Python</li><li>LangChain</li><li>AWS</li></ul>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noopener">Code →</a>
+                <a href="#" target="_blank" rel="noopener">Demo →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-media">
+              <img src="assets/project-2.svg" alt="Screenshot of project two" />
+            </div>
+            <div class="project-body">
+              <h3>Project Two</h3>
+              <p>Short, punchy description of what the agent does and what problem it solves.</p>
+              <ul class="tags"><li>SQL</li><li>Tableau</li><li>OpenAI API</li></ul>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noopener">Code →</a>
+                <a href="#" target="_blank" rel="noopener">Write-up →</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-media">
+              <img src="assets/project-3.svg" alt="Screenshot of project three" />
+            </div>
+            <div class="project-body">
+              <h3>Project Three</h3>
+              <p>Short, punchy description of what the agent does and what problem it solves.</p>
+              <ul class="tags"><li>Power BI</li><li>Python</li></ul>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+          </article>
+
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ============ CONTACT ============ -->
-  <section id="contact" class="section">
-    <div class="container contact">
-      <h2>Let's talk</h2>
-      <p>Open to full-time roles in data analytics, BI, or AI engineering starting summer 2026.</p>
-      <div class="contact-links">
-        <a href="mailto:00jgvarley@gmail.com">Email</a>
-        <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
-        <a href="https://github.com/varvarley" target="_blank" rel="noopener">GitHub</a>
+    <!-- TODO: Section — e.g. featured project, quick links, or a teaser -->
+
+    <!-- TODO: Section — e.g. currently working on / recent activity -->
+
+    <!-- ============ BEYOND WORK ============ -->
+    <section id="beyond" class="section section-alt">
+      <div class="container">
+        <h2>Beyond Work</h2>
+        <p class="section-lede">Stuff I'm into when I'm not at a keyboard.</p>
+        <div class="beyond-grid">
+          <div class="beyond-card">
+            <h3>Hobby one</h3>
+            <p>A sentence or two about something you love doing. Keep it human.</p>
+          </div>
+          <div class="beyond-card">
+            <h3>Hobby two</h3>
+            <p>Another thing you enjoy — travel, music, sports, cooking, reading, etc.</p>
+          </div>
+          <div class="beyond-card">
+            <h3>Hobby three</h3>
+            <p>One more — maybe a project or interest totally unrelated to data.</p>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <footer class="site-footer">
-    <div class="container">
-      <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; coffee. &nbsp;|&nbsp; v0.1.1</p>
-    </div>
-  </footer>
+    <!-- ============ CONTACT ============ -->
+    <section id="contact" class="section">
+      <div class="container contact">
+        <h2>Let's talk</h2>
+        <p>Open to full-time roles in data analytics, BI, or AI engineering starting summer 2026.</p>
+        <div class="contact-links">
+          <a href="mailto:00jgvarley@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="https://github.com/varvarley" target="_blank" rel="noopener">GitHub</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; coffee. &nbsp;|&nbsp; v0.2.0</p>
+      </div>
+    </footer>
+
+  </div><!-- /scroll-content -->
 
   <script src="main.js"></script>
 </body>

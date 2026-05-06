@@ -1,12 +1,13 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.3.0
+   Version: 0.3.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
      0.2.0 — Alpine glow dark mode; fixed hero scroll-cover effect; white-toned UI
      0.2.1 — IMG_0192 photo hero bg; text repositioned higher; eyebrow typewriter effect
      0.3.0 — Pure black dark mode bg; hero h1 → Orbitron "Josh Varley"; DS cartridge project cards; hero mountains → black rect
+     0.3.1 — Body/description font changed from Lora to JetBrains Mono
    ============================================= */
 
 /* =============================================
@@ -66,17 +67,17 @@
 
 /* =============================================
    TYPOGRAPHY
-   - Calistoga      → display / headlines
-   - Press Start 2P → pixel labels & buttons (sparingly)
-   - Lora           → body text
-   - Orbitron       → brand name (.brand) only
+   - Calistoga       → display / headlines
+   - Press Start 2P  → pixel labels & buttons (sparingly)
+   - JetBrains Mono  → all body / description text
+   - Orbitron        → brand name (.brand) only
    ============================================= */
 
 :root {
   --font-display: 'Calistoga', serif;
   --font-pixel:   'Press Start 2P', monospace;
-  --font-body:    'Lora', serif;
-  --font-brand:   'Orbitron', sans-serif;  /* GameCube/PlayStation-style brand name */
+  --font-body:    'JetBrains Mono', monospace;  /* all description/body text */
+  --font-brand:   'Orbitron', sans-serif;        /* GameCube/PlayStation-style brand name */
 }
 
 /* =============================================

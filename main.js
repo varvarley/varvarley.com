@@ -1,5 +1,24 @@
 // main.js — global interactions for varvarley.com
 
+// ── Typewriter effect ──────────────────────────────────────────
+// Types out the text of the .eyebrow element one character at a time.
+// Adds .typed class when done to stop the cursor blinking.
+const eyebrow = document.querySelector('.eyebrow');
+if (eyebrow) {
+  const fullText = eyebrow.textContent.trim();
+  eyebrow.textContent = '';
+  let i = 0;
+  const type = () => {
+    if (i < fullText.length) {
+      eyebrow.textContent += fullText[i++];
+      setTimeout(type, 90);
+    } else {
+      eyebrow.classList.add('typed'); // stop cursor once done
+    }
+  };
+  setTimeout(type, 600); // short delay before typing starts
+}
+
 // ── Mobile nav toggle ──────────────────────────────────────────
 const toggle   = document.querySelector('.nav-toggle');
 const navLinks = document.querySelector('.nav-links');

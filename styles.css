@@ -1,10 +1,11 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.2.0
+   Version: 0.2.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
      0.2.0 — Alpine glow dark mode; fixed hero scroll-cover effect; white-toned UI
+     0.2.1 — IMG_0192 photo hero bg; text repositioned higher; eyebrow typewriter effect
    ============================================= */
 
 /* =============================================
@@ -226,52 +227,30 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: 100vh;
   z-index: 0;
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* content anchors to top so we control position via padding */
   overflow: hidden;
 
-  /* Alpine glow gradient — mirrors the DMAlpineGlow reference:
-     deep midnight at top → violet → rose → ember orange → dark silhouette */
+  /* Photo background (IMG_0192) with a gradient overlay for text readability.
+     Overlay: slight dark at top (nav area), transparent through the sky,
+     then deepens at the bottom to cover the date stamp and blend into scroll-content. */
   background:
     linear-gradient(
-      180deg,
-      #0e0818 0%,
-      #1a0c28 12%,
-      #3d1450 28%,
-      #701848 40%,
-      #b82858 52%,
-      #d84020 63%,
-      #e86018 70%,
-      #b03010 78%,
-      #090608 100%
-    );
+      to bottom,
+      rgba(10, 6, 18, 0.45) 0%,
+      rgba(10, 6, 18, 0.15) 25%,
+      rgba(10, 6, 18, 0.10) 55%,
+      rgba(10, 6, 18, 0.60) 80%,
+      rgba(9,  6,  8, 0.95) 100%
+    ),
+    url('InspoPics/IMG_0192.JPG') center / cover no-repeat;
 }
 
-/* Stars in the upper sky */
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0 0 45% 0;
-  pointer-events: none;
-  background-image:
-    radial-gradient(1.5px 1.5px at 8%  12%, rgba(255,255,255,0.9) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 18% 8%,  rgba(255,255,255,0.7) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 30% 18%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(2px   2px   at 42% 6%,  rgba(255,255,255,0.8) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 55% 14%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 65% 9%,  rgba(255,255,255,0.7) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 75% 20%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(2px   2px   at 88% 7%,  rgba(255,255,255,0.9) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 93% 16%, rgba(255,255,255,0.5) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 22% 25%, rgba(255,255,255,0.4) 0%, transparent 100%),
-    radial-gradient(1.5px 1.5px at 50% 22%, rgba(255,255,255,0.6) 0%, transparent 100%),
-    radial-gradient(1px   1px   at 80% 28%, rgba(255,255,255,0.4) 0%, transparent 100%);
-}
-
-/* Hero text content */
+/* Hero text content — padding-top places it in the upper sky area of the photo */
 .hero-content {
   position: relative;
   z-index: 2;
-  padding-top: 60px; /* clear the fixed nav */
+  padding-top: 16vh; /* sits in the colorful sky, clears the nav */
+  text-shadow: 0 2px 16px rgba(0,0,0,0.55); /* keeps text legible over the photo */
 }
 
 /* Mountain silhouette — CSS clip-path, no image needed */
@@ -328,12 +307,29 @@ ul { margin: 0; padding: 0; list-style: none; }
   );
 }
 
+/* Typewriter cursor blink — applied while text is being typed */
+@keyframes blink-cursor {
+  0%, 100% { border-color: rgba(240,236,248,0.8); }
+  50%       { border-color: transparent; }
+}
+
 .eyebrow {
   font-family: var(--font-pixel);
-  font-size: 0.5rem;
-  color: rgba(240,236,248,0.6);
-  letter-spacing: 0.15em;
-  margin-bottom: var(--space-2);
+  font-size: 0.75rem;           /* larger than before for impact */
+  color: rgba(240,236,248,0.85);
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-3);
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 2px solid rgba(240,236,248,0.8); /* cursor */
+  animation: blink-cursor 0.75s step-end infinite;
+}
+
+/* Once JS finishes typing, .eyebrow gets .typed — cursor stops blinking */
+.eyebrow.typed {
+  animation: none;
+  border-right-color: transparent;
 }
 
 .lede {

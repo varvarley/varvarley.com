@@ -56,7 +56,7 @@ if (header) {
 // defined yet. When ready, add [data-theme="light"] { ... }
 // to styles.css and remove the "coming soon" guard below.
 const themeToggle = document.getElementById('theme-toggle');
-const LIGHT_MODE_READY = false; // flip to true when light mode is implemented
+const LIGHT_MODE_READY = true;
 
 if (themeToggle) {
   // Load saved preference

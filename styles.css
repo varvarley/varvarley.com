@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.3.1
+   Version: 0.4.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -8,6 +8,7 @@
      0.2.1 — IMG_0192 photo hero bg; text repositioned higher; eyebrow typewriter effect
      0.3.0 — Pure black dark mode bg; hero h1 → Orbitron "Josh Varley"; DS cartridge project cards; hero mountains → black rect
      0.3.1 — Body/description font changed from Lora to JetBrains Mono
+     0.4.0 — Light mode implemented: sunrise alpine glow gradient hero, warm off-white content bg
    ============================================= */
 
 /* =============================================
@@ -906,4 +907,119 @@ ul { margin: 0; padding: 0; list-style: none; }
   .homestead-stars { order: 3; width: 100%; justify-content: center; }
 
   .hero-content h1 { font-size: 2.2rem; }
+}
+
+/* =============================================
+   LIGHT MODE — [data-theme="light"]
+   Sunrise alpine glow: cool blue sky at top,
+   grey-blue transition, warm peachy sunrise at bottom.
+   All variable overrides here — component styles
+   pick them up automatically via var().
+   ============================================= */
+
+[data-theme="light"] {
+  /* ── Backgrounds — warm off-white, feels like fresh mountain morning ── */
+  --color-bg-primary:  #faf7f5;
+  --color-bg-surface:  #f0ece8;
+  --color-bg-elevated: #e6e0da;
+
+  /* ── Alpine glow palette (light mode) ── */
+  --color-alpine-sky:    #9fb9de;   /* top of gradient — cool blue sky */
+  --color-alpine-violet: #b4c6de;   /* transitioning sky */
+  --color-alpine-rose:   #c87060;   /* sunrise accent */
+  --color-alpine-ember:  #d08878;   /* warm ember accent */
+  --color-alpine-dark:   #f0b7ab;   /* bottom of gradient — warm peach */
+
+  /* ── Text — dark and legible on light backgrounds ── */
+  --color-text-primary: #1a1218;
+  --color-text-muted:   #6a5c68;
+  --color-text-accent:  #4a3850;
+
+  /* ── Borders ── */
+  --color-border:      #d4cdd8;
+  --color-border-warm: #c4bab8;
+
+  /* ── Shadows — softer on light bg ── */
+  --shadow-glow: 0 4px 24px rgba(192, 112, 96, 0.18);
+  --shadow-card: 0 2px 12px rgba(0,0,0,0.07), inset 0 1px 0 rgba(255,255,255,0.7);
+  --shadow-deep: 0 8px 40px rgba(0,0,0,0.12);
+}
+
+/* Hero — replace photo with CSS sunrise gradient in light mode */
+[data-theme="light"] .hero {
+  background: linear-gradient(
+    180deg,
+    #9fb9de 0%,    /* cool blue sky */
+    #b4c6de 18%,   /* softening sky */
+    #ced2dd 42%,   /* grey-blue horizon zone */
+    #ddc4bc 65%,   /* warming towards sunrise */
+    #ecc0b4 82%,   /* soft peach glow */
+    #f0b7ab 100%   /* warm peachy sunrise */
+  );
+}
+
+/* Mountains rectangle matches the bottom peach of the gradient */
+[data-theme="light"] .hero-mountains { background: #f0b7ab; }
+
+/* Hero text — dark on the light gradient, with soft white glow for legibility */
+[data-theme="light"] .hero-content { text-shadow: 0 1px 8px rgba(255,255,255,0.5); }
+[data-theme="light"] .hero-name    { color: #1a1218; }
+[data-theme="light"] .eyebrow      { color: rgba(26,18,24,0.75); border-right-color: rgba(26,18,24,0.75); }
+[data-theme="light"] .lede         { color: rgba(26,18,24,0.65); }
+[data-theme="light"] .location     { color: rgba(26,18,24,0.55); }
+
+/* Scroll content shadow — warm instead of black */
+[data-theme="light"] .scroll-content {
+  box-shadow: 0 -16px 40px rgba(120, 90, 90, 0.14);
+}
+
+/* Nav — transparent over hero (text stays readable over the blue sky).
+   Once scrolled, warm off-white bg with dark text. */
+[data-theme="light"] .site-header.scrolled {
+  background: rgba(250, 247, 245, 0.92);
+  border-bottom-color: var(--color-border);
+}
+[data-theme="light"] .site-header.scrolled .brand          { color: #1a1218; }
+[data-theme="light"] .site-header.scrolled .nav-links a    { color: #6a5c68; }
+[data-theme="light"] .site-header.scrolled .nav-links a:hover { color: #1a1218; }
+[data-theme="light"] .site-header.scrolled .theme-toggle   { color: #6a5c68; border-color: var(--color-border-warm); }
+
+/* Buttons — flip to dark bg with light text in light mode */
+[data-theme="light"] .btn-primary {
+  background: #1a1218;
+  color: #faf7f5;
+  box-shadow: 0 4px 0 #3a2a38;
+}
+[data-theme="light"] .btn-primary:hover { color: #faf7f5; box-shadow: 0 2px 0 #3a2a38; }
+
+[data-theme="light"] .btn-ghost {
+  border-color: rgba(26,18,24,0.35);
+  color: #1a1218;
+  box-shadow: 0 4px 0 rgba(0,0,0,0.08);
+}
+[data-theme="light"] .btn-ghost:hover {
+  border-color: #1a1218;
+  box-shadow: 0 2px 0 rgba(0,0,0,0.08);
+}
+
+/* Divider treeline — pick up the light surface color */
+[data-theme="light"] .divider          { background: #faf7f5; }
+[data-theme="light"] .divider::before  { background: #f0ece8; }
+
+/* Tags */
+[data-theme="light"] .tags li {
+  background: rgba(26,18,24,0.05);
+  color: #4a3850;
+  border-color: rgba(26,18,24,0.14);
+}
+
+/* Project + beyond card text */
+[data-theme="light"] .beyond-card h3  { color: #4a3850; }
+[data-theme="light"] .project-links a { color: #4a3850; }
+[data-theme="light"] .contact-links a { color: #4a3850; }
+
+/* Mobile nav dropdown in light mode */
+[data-theme="light"] .nav-links {
+  background: #faf7f5;
+  border-bottom-color: var(--color-border);
 }

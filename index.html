@@ -57,7 +57,7 @@
   <section class="hero" aria-label="Hero">
     <div class="hero-content container">
       <p class="eyebrow">Welcome</p>
-      <h1>People call me Var.</h1>
+      <h1 class="hero-name">Josh Varley</h1>
       <!-- TODO: Replace with your 1–2 sentence personal intro -->
       <p class="lede">
         Information Systems &amp; Data Analytics at Utah State University.
@@ -120,54 +120,95 @@
     <section id="projects" class="section">
       <div class="container">
         <h2>Projects</h2>
-        <p class="section-lede">Things I've built. Click through for a write-up, code, or a demo video.</p>
+        <p class="section-lede">Things I've built. Click through for a write-up, code, or a demo.</p>
 
+        <!-- DS Cartridge project cards.
+             Each .ds-cart-wrap = one cartridge + description below.
+             To add a project: duplicate a .ds-cart-wrap, increment data-project, update content. -->
         <div class="project-grid">
 
-          <!-- Duplicate this <article> block for each new project -->
-          <article class="project">
-            <div class="project-media">
-              <img src="assets/project-1.svg" alt="Screenshot of project one" />
+          <!-- Project 1 — Blue cartridge -->
+          <div class="ds-cart-wrap">
+            <div class="ds-cart" data-project="1">
+              <div class="ds-cart-body">
+                <div class="ds-cart-header">
+                  <span class="ds-cart-header-brand">NDS</span>
+                  <span class="ds-cart-header-icon">■</span>
+                </div>
+                <div class="ds-cart-art">
+                  <h3 class="ds-cart-title">Project One</h3>
+                </div>
+                <div class="ds-cart-footer">
+                  <span class="ds-cart-footer-code">NTR-PROJ1-USA</span>
+                </div>
+              </div>
+              <div class="ds-cart-connector"></div>
             </div>
-            <div class="project-body">
-              <h3>Project One</h3>
-              <p>Short, punchy description of what the agent does and what problem it solves.</p>
+            <div class="ds-cart-desc">
+              <!-- TODO: Replace with real project description -->
+              <p>Short, punchy description of what this project does and what problem it solves.</p>
               <ul class="tags"><li>Python</li><li>LangChain</li><li>AWS</li></ul>
               <div class="project-links">
                 <a href="#" target="_blank" rel="noopener">Code →</a>
                 <a href="#" target="_blank" rel="noopener">Demo →</a>
               </div>
             </div>
-          </article>
+          </div>
 
-          <article class="project">
-            <div class="project-media">
-              <img src="assets/project-2.svg" alt="Screenshot of project two" />
+          <!-- Project 2 — Red cartridge -->
+          <div class="ds-cart-wrap">
+            <div class="ds-cart" data-project="2">
+              <div class="ds-cart-body">
+                <div class="ds-cart-header">
+                  <span class="ds-cart-header-brand">NDS</span>
+                  <span class="ds-cart-header-icon">■</span>
+                </div>
+                <div class="ds-cart-art">
+                  <h3 class="ds-cart-title">Project Two</h3>
+                </div>
+                <div class="ds-cart-footer">
+                  <span class="ds-cart-footer-code">NTR-PROJ2-USA</span>
+                </div>
+              </div>
+              <div class="ds-cart-connector"></div>
             </div>
-            <div class="project-body">
-              <h3>Project Two</h3>
-              <p>Short, punchy description of what the agent does and what problem it solves.</p>
+            <div class="ds-cart-desc">
+              <!-- TODO: Replace with real project description -->
+              <p>Short, punchy description of what this project does and what problem it solves.</p>
               <ul class="tags"><li>SQL</li><li>Tableau</li><li>OpenAI API</li></ul>
               <div class="project-links">
                 <a href="#" target="_blank" rel="noopener">Code →</a>
                 <a href="#" target="_blank" rel="noopener">Write-up →</a>
               </div>
             </div>
-          </article>
+          </div>
 
-          <article class="project">
-            <div class="project-media">
-              <img src="assets/project-3.svg" alt="Screenshot of project three" />
+          <!-- Project 3 — Green cartridge -->
+          <div class="ds-cart-wrap">
+            <div class="ds-cart" data-project="3">
+              <div class="ds-cart-body">
+                <div class="ds-cart-header">
+                  <span class="ds-cart-header-brand">NDS</span>
+                  <span class="ds-cart-header-icon">■</span>
+                </div>
+                <div class="ds-cart-art">
+                  <h3 class="ds-cart-title">Project Three</h3>
+                </div>
+                <div class="ds-cart-footer">
+                  <span class="ds-cart-footer-code">NTR-PROJ3-USA</span>
+                </div>
+              </div>
+              <div class="ds-cart-connector"></div>
             </div>
-            <div class="project-body">
-              <h3>Project Three</h3>
-              <p>Short, punchy description of what the agent does and what problem it solves.</p>
+            <div class="ds-cart-desc">
+              <!-- TODO: Replace with real project description -->
+              <p>Short, punchy description of what this project does and what problem it solves.</p>
               <ul class="tags"><li>Power BI</li><li>Python</li></ul>
               <div class="project-links">
                 <a href="#" target="_blank" rel="noopener">Code →</a>
               </div>
             </div>
-          </article>
+          </div>
 
         </div>
       </div>
@@ -214,7 +255,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; coffee. &nbsp;|&nbsp; v0.2.1</p>
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; coffee. &nbsp;|&nbsp; v0.3.0</p>
       </div>
     </footer>
 

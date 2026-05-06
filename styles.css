@@ -1,11 +1,12 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.2.1
+   Version: 0.3.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
      0.2.0 — Alpine glow dark mode; fixed hero scroll-cover effect; white-toned UI
      0.2.1 — IMG_0192 photo hero bg; text repositioned higher; eyebrow typewriter effect
+     0.3.0 — Pure black dark mode bg; hero h1 → Orbitron "Josh Varley"; DS cartridge project cards; hero mountains → black rect
    ============================================= */
 
 /* =============================================
@@ -16,10 +17,10 @@
    ============================================= */
 
 :root {
-  /* ── Page backgrounds ── */
-  --color-bg-primary:  #0e0a16;   /* deep midnight — main page bg */
-  --color-bg-surface:  #18102a;   /* slightly lifted surface (cards, alt sections) */
-  --color-bg-elevated: #221838;   /* hover states, modals */
+  /* ── Page backgrounds — pure black for dark mode ── */
+  --color-bg-primary:  #080808;   /* near-black — main page bg */
+  --color-bg-surface:  #111111;   /* dark surface (cards, alt sections) */
+  --color-bg-elevated: #1a1a1a;   /* slightly lifted (hover states, modals) */
 
   /* ── Alpine glow palette (used in hero gradient + accents) ── */
   --color-alpine-sky:    #0e0818;  /* top of sky, near black-purple */
@@ -34,8 +35,8 @@
   --color-text-accent:  #d8c8f0;   /* bright lavender-white for highlights */
 
   /* ── Borders ── */
-  --color-border:      #2e1e40;   /* subtle dark purple border */
-  --color-border-warm: #3e2858;   /* slightly brighter border */
+  --color-border:      #222222;   /* subtle dark border */
+  --color-border-warm: #2e2e2e;   /* slightly brighter border */
 
   /* ── Homestead map (keep earthy) ── */
   --color-bg-ground:  #1c2e10;    /* grass background on homestead map */
@@ -253,58 +254,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-shadow: 0 2px 16px rgba(0,0,0,0.55); /* keeps text legible over the photo */
 }
 
-/* Mountain silhouette — CSS clip-path, no image needed */
+/* Black rectangle at hero bottom — covers the photo date stamp */
 .hero-mountains {
   position: absolute;
   bottom: 0; left: 0; right: 0;
-  height: 42%;
-  background: var(--color-alpine-dark);
-  clip-path: polygon(
-    0%   100%,
-    0%   80%,
-    3%   78%,
-    5%   72%,
-    8%   65%,
-    10%  58%,
-    13%  50%,
-    15%  56%,
-    17%  46%,
-    20%  34%,
-    22%  42%,
-    24%  30%,
-    27%  18%,
-    29%  28%,
-    32%  40%,
-    34%  32%,
-    37%  22%,
-    40%  12%,
-    42%  20%,
-    44%  30%,
-    46%  24%,
-    48%  14%,
-    50%  8%,
-    52%  14%,
-    54%  24%,
-    56%  32%,
-    58%  22%,
-    61%  12%,
-    64%  22%,
-    66%  32%,
-    68%  26%,
-    71%  16%,
-    74%  26%,
-    77%  38%,
-    79%  28%,
-    82%  40%,
-    84%  52%,
-    87%  44%,
-    90%  54%,
-    92%  62%,
-    95%  68%,
-    97%  72%,
-    100% 70%,
-    100% 100%
-  );
+  height: 20%;
+  background: #080808;
 }
 
 /* Typewriter cursor blink — applied while text is being typed */
@@ -349,6 +304,18 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .accent { color: var(--color-alpine-rose); }
+
+/* Hero name — Orbitron bold, professional wordmark feel */
+.hero-name {
+  font-family: var(--font-brand);
+  font-size: clamp(2.6rem, 6vw, 5rem);
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-text-primary);
+  margin: 0 0 var(--space-2);
+  line-height: 1.1;
+  text-transform: uppercase;
+}
 
 .cta-row {
   margin-top: var(--space-4);
@@ -484,43 +451,156 @@ ul { margin: 0; padding: 0; list-style: none; }
 .facts li span:last-child  { color: var(--color-text-primary); }
 
 /* =============================================
-   PROJECTS
+   PROJECTS — Nintendo DS Cartridge style
+   Each project is a CSS-only DS cartridge card.
+   Structure: .ds-cart-wrap > .ds-cart (.ds-cart-body + .ds-cart-connector) + .ds-cart-desc
    ============================================= */
 
+/* Outer grid — three cartridges centered in a row */
 .project-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-3);
+  display: flex;
+  gap: var(--space-5);
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
-.project {
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border-warm);
-  border-radius: var(--radius);
+/* Wrapper: cartridge on top, description below */
+.ds-cart-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 180px;
+}
+
+/* The full cartridge (body + connector nub) */
+.ds-cart {
+  width: 180px;
+  cursor: pointer;
+  transition: transform 0.15s ease, filter 0.15s ease;
+  flex-shrink: 0;
+}
+.ds-cart:hover { transform: translateY(-8px) rotate(-1.5deg); filter: brightness(1.12); }
+
+/* Cartridge body — dark plastic shell */
+.ds-cart-body {
+  background: #1e1e1e;
+  border-radius: 10px 10px 3px 3px;
+  border: 3px solid #3c3c3c;
   overflow: hidden;
-  transition: transform 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
-}
-.project:hover {
-  transform: translateY(-4px);
-  border-color: rgba(240,236,248,0.3);
-  box-shadow: var(--shadow-glow);
+  box-shadow:
+    0 4px 20px rgba(0,0,0,0.8),
+    inset 0 1px 0 rgba(255,255,255,0.07),
+    inset 0 -1px 0 rgba(0,0,0,0.4);
 }
 
-.project-media {
-  aspect-ratio: 16 / 9;
-  background: linear-gradient(135deg, var(--color-alpine-violet), var(--color-bg-surface));
-  display: flex; align-items: center; justify-content: center;
+/* Top strip — light grey "NINTENDO DS" label area */
+.ds-cart-header {
+  background: #dcdcdc;
+  padding: 5px 10px 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid #b4b4b4;
 }
-.project-media img { width: 100%; height: 100%; object-fit: cover; }
+.ds-cart-header-brand {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  font-weight: bold;
+  color: #111;
+  letter-spacing: 0.05em;
+}
+.ds-cart-header-icon {
+  font-size: 0.55rem;
+  color: #444;
+}
 
-.project-body { padding: var(--space-3); }
+/* Artwork / label — unique gradient per project */
+.ds-cart-art {
+  height: 138px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-2);
+  position: relative;
+  overflow: hidden;
+}
+/* Sheen overlay — mimics the glossy cartridge label */
+.ds-cart-art::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
+  pointer-events: none;
+}
+.ds-cart-title {
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.6);
+  position: relative;
+  z-index: 1;
+  margin: 0;
+}
+
+/* Bottom strip — light grey product code */
+.ds-cart-footer {
+  background: #dcdcdc;
+  padding: 4px 10px 5px;
+  text-align: center;
+  border-top: 2px solid #b4b4b4;
+}
+.ds-cart-footer-code {
+  font-family: var(--font-pixel);
+  font-size: 0.28rem;
+  color: #444;
+  letter-spacing: 0.08em;
+}
+
+/* Connector nub — sticks out below the body with gold contacts */
+.ds-cart-connector {
+  width: 58px;
+  height: 13px;
+  background: #1a1a1a;
+  border: 3px solid #3c3c3c;
+  border-top: none;
+  border-radius: 0 0 5px 5px;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+}
+/* Gold contacts inside the connector */
+.ds-cart-connector::before {
+  content: '';
+  position: absolute;
+  top: 2px; left: 5px; right: 5px; bottom: 2px;
+  background: repeating-linear-gradient(
+    90deg,
+    #c8a840 0px, #c8a840 4px,
+    #1a1a1a 4px, #1a1a1a 7px
+  );
+}
+
+/* Per-cartridge label color schemes */
+.ds-cart[data-project="1"] .ds-cart-art { background: linear-gradient(145deg, #112a6e, #1a50b8, #2880d8, #1560a8); }
+.ds-cart[data-project="2"] .ds-cart-art { background: linear-gradient(145deg, #6e1111, #b81a1a, #d83838, #a81515); }
+.ds-cart[data-project="3"] .ds-cart-art { background: linear-gradient(145deg, #116e22, #1ab832, #28d848, #15a825); }
+
+/* Description block below each cartridge */
+.ds-cart-desc {
+  margin-top: var(--space-2);
+  width: 100%;
+  text-align: center;
+}
+.ds-cart-desc p { font-size: 0.85rem; text-align: left; margin-bottom: var(--space-1); }
 
 /* Tags — pixel pill labels */
-.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: var(--space-2) 0; }
+.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: var(--space-1) 0; justify-content: center; }
 .tags li {
   font-family: var(--font-pixel);
-  font-size: 0.4rem;
-  padding: 0.35rem 0.6rem;
+  font-size: 0.38rem;
+  padding: 0.3rem 0.55rem;
   background: rgba(240,236,248,0.07);
   color: var(--color-text-accent);
   border: 1px solid rgba(240,236,248,0.15);
@@ -528,9 +608,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .project-links {
-  display: flex; gap: var(--space-2); margin-top: var(--space-2);
+  display: flex; gap: var(--space-2); margin-top: var(--space-1); justify-content: center;
   font-family: var(--font-pixel);
-  font-size: 0.45rem;
+  font-size: 0.42rem;
 }
 
 /* =============================================

@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.6.2
+   Version: 0.7.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -16,6 +16,7 @@
      0.6.0 — Section headings (h2) switched to Montserrat 700 all-caps via --font-heading token
      0.6.1 — h2, h3, and ds-cart-title switched to Press Start 2P (pixel font)
      0.6.2 — Section headings (h2, h3) switched to Bebas Neue; ds-cart-title restored to Calistoga
+     0.7.0 — Hero typewriter moved to name (two-line); suffix cycler (?!$:)#$%&;)); lede updated
    ============================================= */
 
 /* =============================================
@@ -277,23 +278,12 @@ ul { margin: 0; padding: 0; list-style: none; }
   50%       { border-color: transparent; }
 }
 
-.eyebrow {
-  font-family: var(--font-pixel);
-  font-size: 0.75rem;           /* larger than before for impact */
-  color: rgba(240,236,248,0.85);
-  letter-spacing: 0.12em;
-  margin-bottom: var(--space-3);
-  display: inline-block;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid rgba(240,236,248,0.8); /* cursor */
+/* Typewriter cursor — attached to active typing span and cycling suffix */
+.hero-line1.typing,
+.hero-line2.typing,
+.hero-suffix.cycling {
+  border-right: 3px solid rgba(240,236,248,0.85);
   animation: blink-cursor 0.75s step-end infinite;
-}
-
-/* Once JS finishes typing, .eyebrow gets .typed — cursor stops blinking */
-.eyebrow.typed {
-  animation: none;
-  border-right-color: transparent;
 }
 
 .lede {
@@ -969,7 +959,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* Hero text — dark on the light gradient, with soft white glow for legibility */
 [data-theme="light"] .hero-content { text-shadow: 0 1px 8px rgba(255,255,255,0.5); }
 [data-theme="light"] .hero-name    { color: #1a1218; }
-[data-theme="light"] .eyebrow      { color: rgba(26,18,24,0.75); border-right-color: rgba(26,18,24,0.75); }
+[data-theme="light"] .hero-line1.typing,
+[data-theme="light"] .hero-line2.typing,
+[data-theme="light"] .hero-suffix.cycling { border-right-color: rgba(26,18,24,0.75); }
 [data-theme="light"] .lede         { color: rgba(26,18,24,0.65); }
 [data-theme="light"] .location     { color: rgba(26,18,24,0.55); }
 

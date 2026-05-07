@@ -1,22 +1,45 @@
 // main.js — global interactions for varvarley.com
 
-// ── Typewriter effect ──────────────────────────────────────────
-// Types out the text of the .eyebrow element one character at a time.
-// Adds .typed class when done to stop the cursor blinking.
-const eyebrow = document.querySelector('.eyebrow');
-if (eyebrow) {
-  const fullText = eyebrow.textContent.trim();
-  eyebrow.textContent = '';
-  let i = 0;
-  const type = () => {
-    if (i < fullText.length) {
-      eyebrow.textContent += fullText[i++];
-      setTimeout(type, 90);
-    } else {
-      eyebrow.classList.add('typed'); // stop cursor once done
-    }
-  };
-  setTimeout(type, 600); // short delay before typing starts
+// ── Hero name typewriter + suffix cycler ──────────────────────────────────────
+// Types "Josh" then "Varley" one character at a time, then endlessly cycles
+// through a list of suffixes appended to the end of the second line.
+const heroLine1  = document.querySelector('.hero-line1');
+const heroLine2  = document.querySelector('.hero-line2');
+const heroSuffix = document.querySelector('.hero-suffix');
+
+if (heroLine1 && heroLine2 && heroSuffix) {
+  const SUFFIXES    = ['?', '!', '$', ':)', '#$%&', ';)'];
+  const CHAR_SPEED  = 100;   // ms per character
+  const SUFFIX_HOLD = 1200;  // ms each suffix is shown before swapping
+
+  function typeLine(el, text, onDone) {
+    let i = 0;
+    el.classList.add('typing');
+    const tick = () => {
+      if (i < text.length) {
+        el.textContent += text[i++];
+        setTimeout(tick, CHAR_SPEED);
+      } else {
+        el.classList.remove('typing');
+        onDone();
+      }
+    };
+    tick();
+  }
+
+  function cycleSuffixes(i) {
+    heroSuffix.textContent = SUFFIXES[i % SUFFIXES.length];
+    setTimeout(() => cycleSuffixes(i + 1), SUFFIX_HOLD);
+  }
+
+  setTimeout(() => {
+    typeLine(heroLine1, 'Josh', () => {
+      typeLine(heroLine2, 'Varley', () => {
+        heroSuffix.classList.add('cycling');
+        cycleSuffixes(0);
+      });
+    });
+  }, 600);
 }
 
 // ── Mobile nav toggle ──────────────────────────────────────────

@@ -143,9 +143,95 @@
         <h2>Projects</h2>
         <p class="section-lede">Things I've built. Click through for a write-up, code, or a demo.</p>
 
-        <!-- DS Cartridge project cards — rendered by cartridge.js from the PROJECTS array.
-             To add a project: open cartridge.js and push a new object to PROJECTS. -->
-        <div class="project-grid"></div>
+        <!-- DS Cartridge project cards.
+             Each .ds-cart-wrap = one cartridge + description below.
+             To add a project: duplicate a .ds-cart-wrap, increment data-project, update content. -->
+        <div class="project-grid">
+
+          <!-- Project 1 — Blue cartridge -->
+          <div class="ds-cart-wrap">
+            <div class="ds-cart" data-project="1">
+              <div class="ds-cart-body">
+                <div class="ds-cart-header">
+                  <span class="ds-cart-header-brand">NDS</span>
+                  <span class="ds-cart-header-icon">■</span>
+                </div>
+                <div class="ds-cart-art">
+                  <h3 class="ds-cart-title">Project One</h3>
+                </div>
+                <div class="ds-cart-footer">
+                  <span class="ds-cart-footer-code">NTR-PROJ1-USA</span>
+                </div>
+              </div>
+              <div class="ds-cart-connector"></div>
+            </div>
+            <div class="ds-cart-desc">
+              <!-- TODO: Replace with real project description -->
+              <p>Short, punchy description of what this project does and what problem it solves.</p>
+              <ul class="tags"><li>Python</li><li>LangChain</li><li>AWS</li></ul>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noopener">Code →</a>
+                <a href="#" target="_blank" rel="noopener">Demo →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 2 — Red cartridge -->
+          <div class="ds-cart-wrap">
+            <div class="ds-cart" data-project="2">
+              <div class="ds-cart-body">
+                <div class="ds-cart-header">
+                  <span class="ds-cart-header-brand">NDS</span>
+                  <span class="ds-cart-header-icon">■</span>
+                </div>
+                <div class="ds-cart-art">
+                  <h3 class="ds-cart-title">Project Two</h3>
+                </div>
+                <div class="ds-cart-footer">
+                  <span class="ds-cart-footer-code">NTR-PROJ2-USA</span>
+                </div>
+              </div>
+              <div class="ds-cart-connector"></div>
+            </div>
+            <div class="ds-cart-desc">
+              <!-- TODO: Replace with real project description -->
+              <p>Short, punchy description of what this project does and what problem it solves.</p>
+              <ul class="tags"><li>SQL</li><li>Tableau</li><li>OpenAI API</li></ul>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noopener">Code →</a>
+                <a href="#" target="_blank" rel="noopener">Write-up →</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Project 3 — Green cartridge -->
+          <div class="ds-cart-wrap">
+            <div class="ds-cart" data-project="3">
+              <div class="ds-cart-body">
+                <div class="ds-cart-header">
+                  <span class="ds-cart-header-brand">NDS</span>
+                  <span class="ds-cart-header-icon">■</span>
+                </div>
+                <div class="ds-cart-art">
+                  <h3 class="ds-cart-title">Project Three</h3>
+                </div>
+                <div class="ds-cart-footer">
+                  <span class="ds-cart-footer-code">NTR-PROJ3-USA</span>
+                </div>
+              </div>
+              <div class="ds-cart-connector"></div>
+            </div>
+            <div class="ds-cart-desc">
+              <!-- TODO: Replace with real project description -->
+              <p>Short, punchy description of what this project does and what problem it solves.</p>
+              <ul class="tags"><li>Power BI</li><li>Python</li></ul>
+              <div class="project-links">
+                <a href="#" target="_blank" rel="noopener">Code →</a>
+              </div>
+            </div>
+          </div>
+
+        </div>
       </div>
     </section>
 
@@ -190,13 +276,12 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.6.0</p>
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.5.1</p>
       </div>
     </footer>
 
   </div><!-- /scroll-content -->
 
   <script src="main.js"></script>
-  <script src="cartridge.js"></script>
 </body>
 </html>

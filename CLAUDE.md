@@ -88,6 +88,5 @@ See `DESIGN_PROMPT.md` for the full aesthetic direction. Short version:
 | `styles.css`     | Global design system — single source of truth        |
 | `main.js`        | Global JS (nav toggle, year, shared interactions)    |
 | `homestead.js`   | Homestead map + modal logic (about page only)        |
-| `cartridge.js`   | DS cartridge renderer — edit `PROJECTS` array here to add/remove project cards |
 | `DESIGN_PROMPT.md` | Full aesthetic brief — read before visual changes  |
 | `CLAUDE.md`      | This file                                            |

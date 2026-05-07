@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.6.0
+   Version: 0.6.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -14,6 +14,7 @@
      0.5.0 — Header always frosted (not transparent); scroll-content peeks at bottom (92vh); theme toggle icon-only; fix light-mode nav white box
      0.5.1 — Theme toggle replaced with CSS pixel-art SVG moon/sun icons (currentColor, pixelated rendering)
      0.6.0 — Section headings (h2) switched to Montserrat 700 all-caps via --font-heading token
+     0.6.1 — h2, h3, and ds-cart-title switched to Press Start 2P (pixel font)
    ============================================= */
 
 /* =============================================
@@ -128,8 +129,8 @@ h1, h2, h3 {
   color: var(--color-text-primary);
 }
 h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
-h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
-h3 { font-size: 1.2rem; font-family: var(--font-display); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-family: var(--font-pixel); font-weight: 700; letter-spacing: 0.02em; }
+h3 { font-size: 1.2rem; font-family: var(--font-pixel); }
 
 p  { margin: 0 0 var(--space-2); color: var(--color-text-muted); }
 p strong { color: var(--color-text-primary); }
@@ -541,8 +542,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   pointer-events: none;
 }
 .ds-cart-title {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
+  font-family: var(--font-pixel);
+  font-size: 0.55rem;
   color: #fff;
   text-align: center;
   text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.6);

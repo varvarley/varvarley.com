@@ -2,15 +2,16 @@
 
 // ── Hero name typewriter + suffix cycler ──────────────────────────────────────
 // Types "Josh" then "Varley" one character at a time, then endlessly cycles
-// through a list of suffixes appended to the end of the second line.
+// through suffixes: each is typed in, held, then backspaced out before the next.
 const heroLine1  = document.querySelector('.hero-line1');
 const heroLine2  = document.querySelector('.hero-line2');
 const heroSuffix = document.querySelector('.hero-suffix');
 
 if (heroLine1 && heroLine2 && heroSuffix) {
-  const SUFFIXES    = ['?', '!', '$', ':)', '#$%&', ';)'];
-  const CHAR_SPEED  = 100;   // ms per character
-  const SUFFIX_HOLD = 1200;  // ms each suffix is shown before swapping
+  const SUFFIXES       = ['?', '!', '$', ':)', '#$%&', ';)'];
+  const CHAR_SPEED     = 140;   // ms per character while typing
+  const BACKSPACE_SPEED = 90;   // ms per character while backspacing
+  const SUFFIX_HOLD    = 1100;  // ms the full suffix is shown before backspacing
 
   function typeLine(el, text, onDone) {
     let i = 0;
@@ -27,16 +28,36 @@ if (heroLine1 && heroLine2 && heroSuffix) {
     tick();
   }
 
-  function cycleSuffixes(i) {
-    heroSuffix.textContent = SUFFIXES[i % SUFFIXES.length];
-    setTimeout(() => cycleSuffixes(i + 1), SUFFIX_HOLD);
+  function runSuffix(i) {
+    const text = SUFFIXES[i % SUFFIXES.length];
+    let pos = 0;
+
+    function typeIn() {
+      if (pos < text.length) {
+        heroSuffix.textContent += text[pos++];
+        setTimeout(typeIn, CHAR_SPEED);
+      } else {
+        setTimeout(eraseOut, SUFFIX_HOLD);
+      }
+    }
+
+    function eraseOut() {
+      if (heroSuffix.textContent.length > 0) {
+        heroSuffix.textContent = heroSuffix.textContent.slice(0, -1);
+        setTimeout(eraseOut, BACKSPACE_SPEED);
+      } else {
+        runSuffix(i + 1);
+      }
+    }
+
+    typeIn();
   }
 
   setTimeout(() => {
     typeLine(heroLine1, 'Josh', () => {
       typeLine(heroLine2, 'Varley', () => {
         heroSuffix.classList.add('cycling');
-        cycleSuffixes(0);
+        runSuffix(0);
       });
     });
   }, 600);

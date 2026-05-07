@@ -79,9 +79,9 @@ if (themeToggle) {
   });
 }
 
-// Updates the toggle button icon to match the current theme
+// Updates the toggle aria-label to match the current theme (icon swap is handled by CSS)
 function syncToggleLabel() {
   if (!themeToggle) return;
   const theme = document.documentElement.getAttribute('data-theme');
-  themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
+  themeToggle.setAttribute('aria-label', theme === 'dark' ? 'Switch to light mode' : 'Switch to dark mode');
 }

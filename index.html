@@ -41,8 +41,29 @@
 
         <!-- Dark/light mode toggle.
              Light mode tokens are a future TODO — dark is the only mode for now. -->
-        <button class="theme-toggle" id="theme-toggle" aria-label="Toggle light/dark mode">
-          🌙
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <!-- Moon — shown in dark mode -->
+          <svg class="toggle-icon icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+            <rect fill="currentColor" x="2" y="0" width="2" height="1"/>
+            <rect fill="currentColor" x="1" y="1" width="3" height="1"/>
+            <rect fill="currentColor" x="0" y="2" width="3" height="1"/>
+            <rect fill="currentColor" x="0" y="3" width="2" height="2"/>
+            <rect fill="currentColor" x="0" y="5" width="3" height="1"/>
+            <rect fill="currentColor" x="1" y="6" width="3" height="1"/>
+            <rect fill="currentColor" x="2" y="7" width="2" height="1"/>
+          </svg>
+          <!-- Sun — shown in light mode -->
+          <svg class="toggle-icon icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" aria-hidden="true">
+            <rect fill="currentColor" x="0" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="3" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="0" y="3" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="3" width="1" height="1"/>
+            <rect fill="currentColor" x="0" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="3" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="2" y="2" width="3" height="3"/>
+          </svg>
         </button>
       </div>
     </nav>
@@ -255,7 +276,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.5.0</p>
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.5.1</p>
       </div>
     </footer>
 

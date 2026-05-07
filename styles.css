@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.5.0
+   Version: 0.5.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -12,6 +12,7 @@
      0.4.1 — Dark mode hero swapped from photo to CSS sunset gradient (#a4516c -> #d38896 -> #ed945a)
      0.4.2 — Removed hero-mountains rectangle; gradient now fills full hero height in both modes
      0.5.0 — Header always frosted (not transparent); scroll-content peeks at bottom (92vh); theme toggle icon-only; fix light-mode nav white box
+     0.5.1 — Theme toggle replaced with CSS pixel-art SVG moon/sun icons (currentColor, pixelated rendering)
    ============================================= */
 
 /* =============================================
@@ -196,18 +197,27 @@ ul { margin: 0; padding: 0; list-style: none; }
    will be added under [data-theme="light"] in a future update.
    ─────────────────────────────────────────── */
 .theme-toggle {
-  font-size: 1.1rem;
   background: transparent;
   border: none;
-  padding: 0.25rem 0.35rem;
+  padding: 0.3rem;
   cursor: pointer;
   line-height: 1;
+  color: var(--color-text-muted);
   transition: opacity 0.15s ease, transform 0.15s ease;
 }
-.theme-toggle:hover {
-  opacity: 0.75;
-  transform: scale(1.15);
+.theme-toggle:hover { opacity: 0.65; transform: scale(1.2); }
+
+/* Pixel art toggle icons — currentColor inherits button text color */
+.toggle-icon {
+  width: 14px;
+  height: 14px;
+  display: block;
+  image-rendering: pixelated;
 }
+
+/* Show moon in dark mode, sun in light mode */
+[data-theme="dark"]  .icon-sun  { display: none; }
+[data-theme="light"] .icon-moon { display: none; }
 
 .nav-toggle {
   display: none; background: none; border: 0; padding: 6px; cursor: pointer;
@@ -972,7 +982,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 [data-theme="light"] .site-header .brand          { color: #1a1218; }
 [data-theme="light"] .site-header .nav-links a    { color: #6a5c68; }
 [data-theme="light"] .site-header .nav-links a:hover { color: #1a1218; }
-[data-theme="light"] .site-header .theme-toggle   { opacity: 0.8; }
+[data-theme="light"] .site-header .theme-toggle   { color: #6a5c68; }
 
 /* Buttons — flip to dark bg with light text in light mode */
 [data-theme="light"] .btn-primary {

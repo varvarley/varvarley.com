@@ -72,7 +72,7 @@ Always include "Bumped version to X.X.X" as the last bullet when the version cha
 See `DESIGN_PROMPT.md` for the full aesthetic direction. Short version:
 
 - **Warm = default, pixel = punctuation.** Warm earthy tones everywhere; pixel/retro elements only for interactive accents (buttons, labels, hover states).
-- Fonts: `Calistoga` for headlines, `Press Start 2P` for pixel labels/buttons (use sparingly, small size), `Lora` for body text.
+- Fonts: `Montserrat` (bold, all-caps) for section headings (h2), `Calistoga` for display/hero text, `Press Start 2P` for pixel labels/buttons (use sparingly, small size), `JetBrains Mono` for body text.
 - No frameworks, no bundlers — vanilla HTML, CSS, and JS only.
 - Mobile is a future task — don't break small screens, but don't optimize for them yet.
 - Homestead buildings are CSS div structures only — no external image assets.

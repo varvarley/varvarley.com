@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.5.1
+   Version: 0.6.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -13,6 +13,7 @@
      0.4.2 — Removed hero-mountains rectangle; gradient now fills full hero height in both modes
      0.5.0 — Header always frosted (not transparent); scroll-content peeks at bottom (92vh); theme toggle icon-only; fix light-mode nav white box
      0.5.1 — Theme toggle replaced with CSS pixel-art SVG moon/sun icons (currentColor, pixelated rendering)
+     0.6.0 — Section headings (h2) switched to Montserrat 700 all-caps via --font-heading token
    ============================================= */
 
 /* =============================================
@@ -80,6 +81,7 @@
 
 :root {
   --font-display: 'Calistoga', serif;
+  --font-heading: 'Montserrat', sans-serif;      /* section headings — bold, all-caps */
   --font-pixel:   'Press Start 2P', monospace;
   --font-body:    'JetBrains Mono', monospace;  /* all description/body text */
   --font-brand:   'Orbitron', sans-serif;        /* GameCube/PlayStation-style brand name */
@@ -126,7 +128,7 @@ h1, h2, h3 {
   color: var(--color-text-primary);
 }
 h1 { font-size: clamp(2.4rem, 5vw, 4rem); }
-h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); }
+h2 { font-size: clamp(1.6rem, 3.5vw, 2.4rem); font-family: var(--font-heading); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
 h3 { font-size: 1.2rem; font-family: var(--font-display); }
 
 p  { margin: 0 0 var(--space-2); color: var(--color-text-muted); }

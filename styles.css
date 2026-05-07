@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.7.0
+   Version: 0.6.3
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -16,7 +16,7 @@
      0.6.0 — Section headings (h2) switched to Montserrat 700 all-caps via --font-heading token
      0.6.1 — h2, h3, and ds-cart-title switched to Press Start 2P (pixel font)
      0.6.2 — Section headings (h2, h3) switched to Bebas Neue; ds-cart-title restored to Calistoga
-     0.7.0 — Hero typewriter moved to name (two-line); suffix cycler (?!$:)#$%&;)); lede updated
+     0.6.3 — Hero typewriter moved to name (two-line); suffix cycler (?!$:)#$%&;)); lede updated
    ============================================= */
 
 /* =============================================

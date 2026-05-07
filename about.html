@@ -17,7 +17,7 @@
 
   <!-- ============ HOMESTEAD TOP BAR ============ -->
   <header class="homestead-bar">
-    <h1 class="homestead-title">Var's Homestead</h1>
+    <h1 class="homestead-title">The Homestead</h1>
 
     <div class="homestead-stars" aria-hidden="true">
       🌙
@@ -31,7 +31,7 @@
   </header>
 
   <nav style="padding:0.6rem 1.5rem; background:var(--color-bg-primary); border-bottom:1px solid var(--color-border);">
-    <a href="index.html" style="font-family:var(--font-pixel);font-size:0.45rem;color:var(--color-text-muted);">← Back to Home</a>
+    <a href="index.html" style="font-family:var(--font-pixel);font-size:0.45rem;color:var(--color-text-muted);">← Return to Main</a>
   </nav>
 
   <!-- ============ MAP CANVAS ============ -->
@@ -83,7 +83,7 @@
 
     <!-- ============ BUILDINGS ============ -->
 
-    <!-- Varber Shop — top-left — Purple tones -->
+    <!-- Varber Shop — top-left — Purple tones + animated barber pole -->
     <div class="building" id="b-varber"
          style="left:13%;top:20%;"
          onclick="openModal('varber')"
@@ -94,88 +94,97 @@
         <div class="b-win b-win-l"></div>
         <div class="b-win b-win-r"></div>
         <div class="b-door"></div>
+        <div class="b-pole"></div>
       </div>
-      <div class="b-sign">✂️</div>
       <div class="b-label">Varber Shop</div>
     </div>
 
-    <!-- The Univarsity — top-center — Deep indigo -->
+    <!-- The Univarsity — top-center — Old Main clock tower -->
     <div class="building" id="b-univarsity"
          style="left:50%;top:12%;"
          onclick="openModal('univarsity')"
          role="button" tabindex="0" aria-label="The Univarsity">
-      <div class="b-chimney"></div>
+      <div class="b-tower">
+        <div class="b-tower-peak"></div>
+        <div class="b-tower-body"></div>
+      </div>
       <div class="b-roof"></div>
       <div class="b-body">
         <div class="b-win b-win-l"></div>
         <div class="b-win b-win-r"></div>
         <div class="b-door"></div>
       </div>
-      <div class="b-sign">🎓</div>
       <div class="b-label">The Univarsity</div>
     </div>
 
-    <!-- The Varden — top-right — Deep green -->
+    <!-- The Varden — top-right — Rustic greenhouse A-frame -->
     <div class="building" id="b-varden"
          style="left:82%;top:20%;"
          onclick="openModal('varden')"
          role="button" tabindex="0" aria-label="The Varden">
-      <div class="b-chimney"></div>
-      <div class="b-roof"></div>
+      <div class="b-gh-roof">
+        <div class="b-gh-l"></div>
+        <div class="b-gh-r"></div>
+      </div>
       <div class="b-body">
         <div class="b-win b-win-l"></div>
         <div class="b-win b-win-r"></div>
         <div class="b-door"></div>
       </div>
-      <div class="b-sign">🌿</div>
       <div class="b-label">The Varden</div>
     </div>
 
-    <!-- Var Dealership — middle-left — Forest green -->
+    <!-- Var Dealership — middle-left — Showroom + pixel cars in forecourt -->
     <div class="building" id="b-dealership"
          style="left:8%;top:52%;"
          onclick="openModal('dealership')"
          role="button" tabindex="0" aria-label="Var Dealership">
-      <div class="b-chimney"></div>
       <div class="b-roof"></div>
       <div class="b-body">
         <div class="b-win b-win-l"></div>
         <div class="b-win b-win-r"></div>
         <div class="b-door"></div>
       </div>
-      <div class="b-sign">🚗</div>
+      <div class="b-forecourt">
+        <div class="b-car b-car-1"></div>
+        <div class="b-car b-car-2"></div>
+        <div class="b-car b-car-3"></div>
+      </div>
       <div class="b-label">Var Dealership</div>
     </div>
 
-    <!-- Varchitect — middle-right — Warm brown -->
+    <!-- Varchitect — middle-right — Modern glass tower -->
     <div class="building" id="b-varchitect"
          style="left:87%;top:52%;"
          onclick="openModal('varchitect')"
          role="button" tabindex="0" aria-label="Varchitect">
-      <div class="b-chimney"></div>
-      <div class="b-roof"></div>
+      <div class="b-modern-roof"></div>
       <div class="b-body">
-        <div class="b-win b-win-l"></div>
-        <div class="b-win b-win-r"></div>
+        <div class="b-glass-grid">
+          <div class="b-gpane"></div><div class="b-gpane"></div><div class="b-gpane"></div>
+          <div class="b-gpane"></div><div class="b-gpane"></div><div class="b-gpane"></div>
+        </div>
         <div class="b-door"></div>
       </div>
-      <div class="b-sign">🏗️</div>
       <div class="b-label">Varchitect</div>
     </div>
 
-    <!-- Varcheologist — bottom-center — Tan/earthy -->
+    <!-- Varcheologist — bottom-center — Field tent + dig site -->
     <div class="building" id="b-varcheologist"
          style="left:22%;top:80%;"
          onclick="openModal('varcheologist')"
          role="button" tabindex="0" aria-label="Varcheologist">
-      <div class="b-chimney"></div>
-      <div class="b-roof"></div>
-      <div class="b-body">
-        <div class="b-win b-win-l"></div>
-        <div class="b-win b-win-r"></div>
-        <div class="b-door"></div>
+      <div class="b-tent">
+        <div class="b-tent-peak"></div>
+        <div class="b-tent-body">
+          <div class="b-tent-opening"></div>
+        </div>
       </div>
-      <div class="b-sign">🦴</div>
+      <div class="b-dig-site">
+        <div class="b-stake"></div>
+        <div class="b-pit"></div>
+        <div class="b-stake"></div>
+      </div>
       <div class="b-label">Varcheologist</div>
     </div>
 
@@ -194,7 +203,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.6.6</p>
+      <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.7.0</p>
     </div>
   </footer>
 

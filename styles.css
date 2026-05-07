@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.6.6
+   Version: 0.7.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -20,6 +20,7 @@
      0.6.4 — Typewriter slowed (140ms); suffix backspaces out before next; white-space nowrap on hero-name
      0.6.5 — favicon updated to duragcowboy_no_bg.png
      0.6.6 — Content cleanup: updated about text, quick facts, cleared placeholder project/hobby content; removed suffix cycler
+     0.7.0 — Homestead facelift: Orbitron title, bigger labels, unique building redesigns (pole, tower, greenhouse, cars, glass grid, tent+dig)
    ============================================= */
 
 /* =============================================
@@ -673,7 +674,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .homestead-title {
-  font-family: var(--font-display);
+  font-family: var(--font-brand);
   font-size: 1.4rem;
   color: var(--color-text-primary);
   margin: 0;
@@ -775,7 +776,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =============================================
-   BUILDINGS — CSS-only, no images
+   BUILDINGS — CSS-only, 8-bit, each unique
    ============================================= */
 
 .building {
@@ -796,45 +797,216 @@ ul { margin: 0; padding: 0; list-style: none; }
 .b-win     { width: 12px; height: 10px; border-width: 1px; border-style: solid; position: absolute; top: 10px; }
 .b-win-l   { left: 8px; }
 .b-win-r   { right: 8px; }
-.b-sign    { font-size: 1.1rem; line-height: 1; margin-top: 3px; }
-.b-label   { font-family: var(--font-pixel); font-size: 0.32rem; color: var(--color-text-muted); margin-top: 5px; white-space: nowrap; text-align: center; transition: color 0.15s ease; letter-spacing: 0.04em; }
+.b-label   { font-family: var(--font-pixel); font-size: 0.38rem; color: var(--color-text-muted); margin-top: 6px; white-space: nowrap; text-align: center; transition: color 0.15s ease; letter-spacing: 0.04em; }
 
-/* Per-building color palettes */
-#b-varber .b-roof         { border-bottom-color: #6a3e70; }
-#b-varber .b-body         { background: #4a2e50; border-color: #7a5080; }
-#b-varber .b-door         { background: #2e1a38; border-color: #9a60a8; }
-#b-varber .b-win          { background: rgba(180,120,210,0.3); border-color: #9a60a8; }
-#b-varber .b-chimney      { background: #5a3860; }
+/* ── Varber Shop — animated barber pole ─────────────────── */
+.b-pole {
+  position: absolute;
+  left: -14px;
+  bottom: 0;
+  width: 8px;
+  height: 40px;
+  border-radius: 3px 3px 0 0;
+  overflow: hidden;
+  background: #f0f0f0;
+  border: 1px solid #b0b0b0;
+  border-bottom: none;
+}
+.b-pole::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    180deg,
+    #cc1111 0px,  #cc1111 5px,
+    #f8f8f8 5px,  #f8f8f8 9px,
+    #1133cc 9px,  #1133cc 14px,
+    #f8f8f8 14px, #f8f8f8 18px
+  );
+  animation: barber-spin 2s linear infinite;
+}
+@keyframes barber-spin {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 18px; }
+}
 
-#b-varcheologist .b-roof  { border-bottom-color: #5a4420; }
-#b-varcheologist .b-body  { background: #3a2c14; border-color: #6a5030; }
-#b-varcheologist .b-door  { background: #241a0c; border-color: #8a7040; }
-#b-varcheologist .b-win   { background: rgba(180,150,80,0.3); border-color: #8a7040; }
-#b-varcheologist .b-chimney { background: #4a3818; }
+#b-varber .b-chimney { background: #6a3e70; }
+#b-varber .b-roof    { border-bottom-color: #7a4e80; }
+#b-varber .b-body    { background: #3e2248; border-color: #9a70b0; }
+#b-varber .b-door    { background: #2a1634; border-color: #b080c8; width: 12px; height: 22px; border-radius: 5px 5px 0 0; }
+#b-varber .b-win     { background: rgba(210,150,240,0.4); border-color: #b080c8; }
 
-#b-varden .b-roof         { border-bottom-color: #2a5020; }
-#b-varden .b-body         { background: #1a3818; border-color: #3a6030; }
-#b-varden .b-door         { background: #0e2010; border-color: #4a8040; }
-#b-varden .b-win          { background: rgba(80,180,80,0.25); border-color: #4a8040; }
-#b-varden .b-chimney      { background: #223820; }
+/* ── Univarsity — Old Main: wide body + clock tower ─────── */
+.b-tower {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: -2px;
+}
+.b-tower-peak {
+  width: 0; height: 0;
+  border-left: 9px solid transparent;
+  border-right: 9px solid transparent;
+  border-bottom: 20px solid #6868b0;
+}
+.b-tower-body {
+  width: 22px;
+  height: 32px;
+  background: #3a3068;
+  border: 2px solid #6868a8;
+  position: relative;
+}
+/* Clock face */
+.b-tower-body::after {
+  content: '';
+  position: absolute;
+  top: 5px; left: 50%;
+  transform: translateX(-50%);
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid #b0b0e0;
+  background: rgba(160,155,240,0.3);
+}
 
-#b-varchitect .b-roof     { border-bottom-color: #5a3a20; }
-#b-varchitect .b-body     { background: #382818; border-color: #6a4a28; }
-#b-varchitect .b-door     { background: #201408; border-color: #8a6035; }
-#b-varchitect .b-win      { background: rgba(200,160,80,0.3); border-color: #8a6035; }
-#b-varchitect .b-chimney  { background: #4a3020; }
+#b-univarsity .b-roof  { border-bottom-color: #3a3068; border-left-width: 46px; border-right-width: 46px; }
+#b-univarsity .b-body  { background: #28204a; border-color: #5858a0; width: 84px; }
+#b-univarsity .b-door  { background: #181030; border-color: #8878c0; width: 16px; height: 26px; border-radius: 6px 6px 0 0; }
+#b-univarsity .b-win   { background: rgba(160,155,240,0.4); border-color: #8878c0; height: 15px; border-radius: 50% 50% 0 0; }
+#b-univarsity .b-win-l { left: 10px; }
+#b-univarsity .b-win-r { right: 10px; }
 
-#b-univarsity .b-roof     { border-bottom-color: #3a3060; }
-#b-univarsity .b-body     { background: #2a2040; border-color: #504880; }
-#b-univarsity .b-door     { background: #18142c; border-color: #7068a8; }
-#b-univarsity .b-win      { background: rgba(140,130,220,0.3); border-color: #7068a8; }
-#b-univarsity .b-chimney  { background: #342858; }
+/* ── The Varden — rustic greenhouse, A-frame glass roof ──── */
+.b-gh-roof {
+  display: flex;
+  align-items: flex-end;
+}
+.b-gh-l {
+  width: 0; height: 0;
+  border-right: 38px solid transparent;
+  border-bottom: 32px solid rgba(70,170,70,0.82);
+}
+.b-gh-r {
+  width: 0; height: 0;
+  border-left: 38px solid transparent;
+  border-bottom: 32px solid rgba(50,148,50,0.82);
+}
 
-#b-dealership .b-roof     { border-bottom-color: #2a4028; }
-#b-dealership .b-body     { background: #2a3a28; border-color: #406040; }
-#b-dealership .b-door     { background: #161e14; border-color: #507850; }
-#b-dealership .b-win      { background: rgba(80,160,80,0.25); border-color: #507850; }
-#b-dealership .b-chimney  { background: #1e3020; }
+#b-varden .b-body { background: rgba(14,44,14,0.9); border-color: #52b040; width: 76px; }
+#b-varden .b-door { background: #0a2208; border-color: #64cc52; }
+#b-varden .b-win  { background: rgba(110,230,90,0.42); border-color: #64cc52; height: 16px; }
+
+/* ── Var Dealership — wide showroom + pixel cars out front ── */
+.b-forecourt {
+  display: flex;
+  gap: 5px;
+  margin-top: 5px;
+}
+.b-car {
+  position: relative;
+  width: 22px;
+  height: 7px;
+  border-radius: 1px;
+}
+/* Roof of car */
+.b-car::before {
+  content: '';
+  position: absolute;
+  top: -5px; left: 5px;
+  width: 12px; height: 6px;
+  border-radius: 2px 2px 0 0;
+  background: inherit;
+  filter: brightness(1.25);
+}
+.b-car-1 { background: #b83030; }
+.b-car-2 { background: #b0b0b0; }
+.b-car-3 { background: #2858b0; }
+
+#b-dealership .b-roof  { border-bottom-color: #2e5230; border-left-width: 46px; border-right-width: 46px; }
+#b-dealership .b-body  { background: #182a18; border-color: #4a8048; width: 84px; }
+#b-dealership .b-win   { background: rgba(130,230,130,0.32); border-color: #52924a; width: 26px; height: 32px; top: 4px; }
+#b-dealership .b-win-l { left: 6px; }
+#b-dealership .b-win-r { right: 6px; }
+#b-dealership .b-door  { background: #0e1e0e; border-color: #5aaa58; }
+
+/* ── Varchitect — modern glass tower ───────────────────────── */
+.b-modern-roof {
+  width: 74px;
+  height: 8px;
+  background: #8ab4cc;
+  border: 1px solid #b8d8ec;
+}
+.b-glass-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  width: calc(100% - 8px);
+  margin: 4px 4px 0;
+}
+.b-gpane {
+  height: 15px;
+  background: rgba(90,175,255,0.38);
+  border: 1px solid rgba(160,218,255,0.7);
+}
+
+#b-varchitect .b-body { background: #14202e; border-color: #3880b8; width: 74px; height: 68px; flex-direction: column; justify-content: flex-start; align-items: center; padding: 0; }
+#b-varchitect .b-door { background: rgba(90,175,255,0.2); border-color: #50a8e0; width: 20px; border-radius: 0; position: absolute; bottom: 0; }
+
+/* ── Varcheologist — field tent + excavation stakes & pit ── */
+.b-tent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.b-tent-peak {
+  width: 0; height: 0;
+  border-left: 38px solid transparent;
+  border-right: 38px solid transparent;
+  border-bottom: 26px solid #c8a040;
+}
+.b-tent-body {
+  width: 72px;
+  height: 30px;
+  background: #d4aa55;
+  border: 2px solid #9a7828;
+  border-top: none;
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.b-tent-opening {
+  width: 20px;
+  height: 26px;
+  background: #3a1e08;
+  border-radius: 2px 2px 0 0;
+  position: absolute;
+  bottom: 0;
+}
+.b-dig-site {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  margin-top: 4px;
+}
+.b-stake {
+  width: 3px;
+  height: 14px;
+  background: #7a5020;
+  position: relative;
+}
+.b-stake::after {
+  content: '';
+  position: absolute;
+  top: -2px; left: -3px;
+  width: 9px; height: 2px;
+  background: #a07838;
+}
+.b-pit {
+  width: 22px;
+  height: 10px;
+  background: #1e1006;
+  border-radius: 40%;
+  border: 2px solid #5a3818;
+}
 
 /* =============================================
    MODAL SYSTEM

@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.4.0
+   Version: 0.4.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -9,6 +9,7 @@
      0.3.0 — Pure black dark mode bg; hero h1 → Orbitron "Josh Varley"; DS cartridge project cards; hero mountains → black rect
      0.3.1 — Body/description font changed from Lora to JetBrains Mono
      0.4.0 — Light mode implemented: sunrise alpine glow gradient hero, warm off-white content bg
+     0.4.1 — Dark mode hero swapped from photo to CSS sunset gradient (#a4516c -> #d38896 -> #ed945a)
    ============================================= */
 
 /* =============================================
@@ -233,19 +234,17 @@ ul { margin: 0; padding: 0; list-style: none; }
   align-items: flex-start; /* content anchors to top so we control position via padding */
   overflow: hidden;
 
-  /* Photo background (IMG_0192) with a gradient overlay for text readability.
-     Overlay: slight dark at top (nav area), transparent through the sky,
-     then deepens at the bottom to cover the date stamp and blend into scroll-content. */
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(10, 6, 18, 0.45) 0%,
-      rgba(10, 6, 18, 0.15) 25%,
-      rgba(10, 6, 18, 0.10) 55%,
-      rgba(10, 6, 18, 0.60) 80%,
-      rgba(9,  6,  8, 0.95) 100%
-    ),
-    url('InspoPics/IMG_0192.JPG') center / cover no-repeat;
+  /* Dark mode sunset alpine glow — end of a long ski day, sun going down.
+     Deep purple-rose at top → muted rose-pink alpenglow → warm orange at horizon. */
+  background: linear-gradient(
+    180deg,
+    #a4516c 0%,    /* deep purple-rose — last light high in the sky */
+    #b86078 18%,   /* purple fading into pink */
+    #d38896 42%,   /* muted rose alpenglow zone */
+    #dfa07a 65%,   /* warming toward the horizon */
+    #e8a868 82%,   /* golden-orange glow */
+    #ed945a 100%   /* warm orange at the horizon */
+  );
 }
 
 /* Hero text content — padding-top places it in the upper sky area of the photo */

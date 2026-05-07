@@ -8,10 +8,7 @@ const heroLine2  = document.querySelector('.hero-line2');
 const heroSuffix = document.querySelector('.hero-suffix');
 
 if (heroLine1 && heroLine2 && heroSuffix) {
-  const SUFFIXES       = ['?', '!', '$', ':)', '#$%&', ';)'];
-  const CHAR_SPEED     = 140;   // ms per character while typing
-  const BACKSPACE_SPEED = 90;   // ms per character while backspacing
-  const SUFFIX_HOLD    = 1100;  // ms the full suffix is shown before backspacing
+  const CHAR_SPEED = 140; // ms per character
 
   function typeLine(el, text, onDone) {
     let i = 0;
@@ -22,43 +19,15 @@ if (heroLine1 && heroLine2 && heroSuffix) {
         setTimeout(tick, CHAR_SPEED);
       } else {
         el.classList.remove('typing');
-        onDone();
+        if (onDone) onDone();
       }
     };
     tick();
   }
 
-  function runSuffix(i) {
-    const text = SUFFIXES[i % SUFFIXES.length];
-    let pos = 0;
-
-    function typeIn() {
-      if (pos < text.length) {
-        heroSuffix.textContent += text[pos++];
-        setTimeout(typeIn, CHAR_SPEED);
-      } else {
-        setTimeout(eraseOut, SUFFIX_HOLD);
-      }
-    }
-
-    function eraseOut() {
-      if (heroSuffix.textContent.length > 0) {
-        heroSuffix.textContent = heroSuffix.textContent.slice(0, -1);
-        setTimeout(eraseOut, BACKSPACE_SPEED);
-      } else {
-        runSuffix(i + 1);
-      }
-    }
-
-    typeIn();
-  }
-
   setTimeout(() => {
     typeLine(heroLine1, 'Josh', () => {
-      typeLine(heroLine2, 'Varley', () => {
-        heroSuffix.classList.add('cycling');
-        runSuffix(0);
-      });
+      typeLine(heroLine2, 'Varley');
     });
   }, 600);
 }

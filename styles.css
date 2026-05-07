@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.4.1
+   Version: 0.4.2
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -10,6 +10,7 @@
      0.3.1 — Body/description font changed from Lora to JetBrains Mono
      0.4.0 — Light mode implemented: sunrise alpine glow gradient hero, warm off-white content bg
      0.4.1 — Dark mode hero swapped from photo to CSS sunset gradient (#a4516c -> #d38896 -> #ed945a)
+     0.4.2 — Removed hero-mountains rectangle; gradient now fills full hero height in both modes
    ============================================= */
 
 /* =============================================
@@ -255,12 +256,9 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-shadow: 0 2px 16px rgba(0,0,0,0.55); /* keeps text legible over the photo */
 }
 
-/* Black rectangle at hero bottom — covers the photo date stamp */
+/* Hero mountains — retained as empty element in HTML; no visible fill needed */
 .hero-mountains {
-  position: absolute;
-  bottom: 0; left: 0; right: 0;
-  height: 20%;
-  background: #080808;
+  display: none;
 }
 
 /* Typewriter cursor blink — applied while text is being typed */
@@ -957,8 +955,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   );
 }
 
-/* Mountains rectangle matches the bottom peach of the gradient */
-[data-theme="light"] .hero-mountains { background: #f0b7ab; }
 
 /* Hero text — dark on the light gradient, with soft white glow for legibility */
 [data-theme="light"] .hero-content { text-shadow: 0 1px 8px rgba(255,255,255,0.5); }

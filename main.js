@@ -79,9 +79,9 @@ if (themeToggle) {
   });
 }
 
-// Updates the toggle button label to match the current theme
+// Updates the toggle button icon to match the current theme
 function syncToggleLabel() {
   if (!themeToggle) return;
   const theme = document.documentElement.getAttribute('data-theme');
-  themeToggle.textContent = theme === 'dark' ? '[ 🌙 Dark ]' : '[ ☀️ Light ]';
+  themeToggle.textContent = theme === 'dark' ? '🌙' : '☀️';
 }

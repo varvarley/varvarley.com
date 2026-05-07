@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.4.2
+   Version: 0.5.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -11,6 +11,7 @@
      0.4.0 — Light mode implemented: sunrise alpine glow gradient hero, warm off-white content bg
      0.4.1 — Dark mode hero swapped from photo to CSS sunset gradient (#a4516c -> #d38896 -> #ed945a)
      0.4.2 — Removed hero-mountains rectangle; gradient now fills full hero height in both modes
+     0.5.0 — Header always frosted (not transparent); scroll-content peeks at bottom (92vh); theme toggle icon-only; fix light-mode nav white box
    ============================================= */
 
 /* =============================================
@@ -140,24 +141,21 @@ ul { margin: 0; padding: 0; list-style: none; }
 /* =============================================
    HEADER / NAV
    Fixed — floats above the hero and scroll content.
-   Transparent at top of page, solid once user scrolls.
+   Always frosted glass; .scrolled retained for JS compatibility.
    ============================================= */
 
 .site-header {
   position: fixed;
   top: 0; left: 0; right: 0;
   z-index: 50;
-  background: transparent;
-  border-bottom: 1px solid transparent;
+  background: color-mix(in srgb, var(--color-bg-primary) 90%, transparent);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--color-border);
   transition: background 0.35s ease, border-color 0.35s ease, backdrop-filter 0.35s ease;
 }
 
-/* Added by JS once the user scrolls past the hero */
-.site-header.scrolled {
-  background: color-mix(in srgb, var(--color-bg-primary) 90%, transparent);
-  backdrop-filter: blur(12px);
-  border-bottom-color: var(--color-border);
-}
+/* .scrolled is kept for JS compatibility — no visual change needed */
+.site-header.scrolled {}
 
 .nav {
   display: flex; align-items: center; justify-content: space-between;
@@ -198,19 +196,17 @@ ul { margin: 0; padding: 0; list-style: none; }
    will be added under [data-theme="light"] in a future update.
    ─────────────────────────────────────────── */
 .theme-toggle {
-  font-family: var(--font-pixel);
-  font-size: 0.42rem;
+  font-size: 1.1rem;
   background: transparent;
-  border: 1px solid var(--color-border-warm);
-  color: var(--color-text-muted);
-  padding: 0.4rem 0.65rem;
+  border: none;
+  padding: 0.25rem 0.35rem;
   cursor: pointer;
-  letter-spacing: 0.04em;
-  transition: border-color 0.15s ease, color 0.15s ease;
+  line-height: 1;
+  transition: opacity 0.15s ease, transform 0.15s ease;
 }
 .theme-toggle:hover {
-  border-color: var(--color-text-accent);
-  color: var(--color-text-primary);
+  opacity: 0.75;
+  transform: scale(1.15);
 }
 
 .nav-toggle {
@@ -372,7 +368,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .scroll-content {
   position: relative;
   z-index: 1;
-  margin-top: 100vh;
+  margin-top: 92vh;
   background: var(--color-bg-primary);
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.7);
@@ -968,16 +964,15 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: 0 -16px 40px rgba(120, 90, 90, 0.14);
 }
 
-/* Nav — transparent over hero (text stays readable over the blue sky).
-   Once scrolled, warm off-white bg with dark text. */
-[data-theme="light"] .site-header.scrolled {
+/* Nav — always frosted in light mode with warm off-white bg and dark text */
+[data-theme="light"] .site-header {
   background: rgba(250, 247, 245, 0.92);
   border-bottom-color: var(--color-border);
 }
-[data-theme="light"] .site-header.scrolled .brand          { color: #1a1218; }
-[data-theme="light"] .site-header.scrolled .nav-links a    { color: #6a5c68; }
-[data-theme="light"] .site-header.scrolled .nav-links a:hover { color: #1a1218; }
-[data-theme="light"] .site-header.scrolled .theme-toggle   { color: #6a5c68; border-color: var(--color-border-warm); }
+[data-theme="light"] .site-header .brand          { color: #1a1218; }
+[data-theme="light"] .site-header .nav-links a    { color: #6a5c68; }
+[data-theme="light"] .site-header .nav-links a:hover { color: #1a1218; }
+[data-theme="light"] .site-header .theme-toggle   { opacity: 0.8; }
 
 /* Buttons — flip to dark bg with light text in light mode */
 [data-theme="light"] .btn-primary {
@@ -1013,8 +1008,10 @@ ul { margin: 0; padding: 0; list-style: none; }
 [data-theme="light"] .project-links a { color: #4a3850; }
 [data-theme="light"] .contact-links a { color: #4a3850; }
 
-/* Mobile nav dropdown in light mode */
-[data-theme="light"] .nav-links {
-  background: #faf7f5;
-  border-bottom-color: var(--color-border);
+/* Mobile nav dropdown in light mode — scoped to mobile only */
+@media (max-width: 720px) {
+  [data-theme="light"] .nav-links {
+    background: #faf7f5;
+    border-bottom-color: var(--color-border);
+  }
 }

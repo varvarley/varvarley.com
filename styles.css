@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.7.0
+   Version: 0.8.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -21,6 +21,7 @@
      0.6.5 — favicon updated to duragcowboy_no_bg.png
      0.6.6 — Content cleanup: updated about text, quick facts, cleared placeholder project/hobby content; removed suffix cycler
      0.7.0 — Homestead facelift: Orbitron title, bigger labels, unique building redesigns (pole, tower, greenhouse, cars, glass grid, tent+dig)
+     0.8.0 — Project cards filled in: Data Pipelining, Data Warehousing, Crypto Trading; ds-cart-title font → JetBrains Mono
    ============================================= */
 
 /* =============================================
@@ -538,7 +539,8 @@ ul { margin: 0; padding: 0; list-style: none; }
   pointer-events: none;
 }
 .ds-cart-title {
-  font-family: var(--font-display);
+  font-family: var(--font-body);
+  font-weight: 500;
   font-size: 1.05rem;
   color: #fff;
   text-align: center;

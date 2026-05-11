@@ -15,7 +15,13 @@ aws s3 sync . "s3://$Bucket/" `
   --delete `
   --exclude "DEPLOYMENT.md" `
   --exclude "deploy.ps1" `
-  --exclude ".git/*"
+  --exclude "CLAUDE.md" `
+  --exclude "DESIGN_PROMPT.md" `
+  --exclude "CHANGES_PROMPT.md" `
+  --exclude "README.md" `
+  --exclude ".git/*" `
+  --exclude "InspoPics/*" `
+  --exclude "portfolio-site/*"
 
 Write-Host "Invalidating CloudFront cache ..." -ForegroundColor Cyan
 aws cloudfront create-invalidation `

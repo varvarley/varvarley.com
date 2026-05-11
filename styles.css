@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.9.1
+   Version: 0.10.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -25,6 +25,7 @@
      0.8.1 — Cartridge icons linked to GitHub; updated Projects lede and Beyond Work description
      0.9.0 — Nav expanded (Work, Varchive, Contact); terminal code block in About; Homestead section rename; work.html + varchive.html added
      0.9.1 — Homestead section: correct favicon (cowboyfavicon.png), removed hobby cards, updated lede
+     0.10.0 — Terminal comments removed; poem added to work.html; contact.html created; nav Contact → contact.html
    ============================================= */
 
 /* =============================================
@@ -1330,6 +1331,25 @@ ul { margin: 0; padding: 0; list-style: none; }
   font-size: 0.42rem;
   color: var(--color-text-muted);
   margin: 0;
+}
+
+/* Poem block */
+.poem { max-width: 660px; }
+.poem-title {
+  font-family: var(--font-body);
+  font-size: 0.6rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.14em;
+  text-transform: lowercase;
+  margin: 0 0 var(--space-2);
+}
+.poem-body {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--color-text-primary);
+  line-height: 2;
+  margin: 0;
+  font-style: italic;
 }
 
 /* Placeholder "coming soon" block */

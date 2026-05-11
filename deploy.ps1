@@ -18,6 +18,7 @@ aws s3 sync . "s3://$Bucket/" `
   --exclude "CLAUDE.md" `
   --exclude "DESIGN_PROMPT.md" `
   --exclude "CHANGES_PROMPT.md" `
+  --exclude "workpoem.md" `
   --exclude "README.md" `
   --exclude ".git/*" `
   --exclude "InspoPics/*" `

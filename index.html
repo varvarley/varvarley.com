@@ -36,7 +36,10 @@
       <div class="nav-right">
         <ul class="nav-links">
           <li><a href="index.html" class="active">Main</a></li>
+          <li><a href="work.html">Work</a></li>
           <li><a href="about.html">The Homestead</a></li>
+          <li><a href="varchive.html">Varchive</a></li>
+          <li><a href="#contact">Contact</a></li>
         </ul>
 
         <!-- Dark/light mode toggle.
@@ -126,6 +129,21 @@
             <li><span>Based in</span><span>Logan, UT</span></li>
           </ul>
         </aside>
+      </div>
+      <!-- Animated fake terminal — purely visual, triggers on scroll into view -->
+      <div class="container">
+        <div class="terminal" id="about-terminal" role="img" aria-label="Python code snippet">
+          <div class="terminal-bar">
+            <span class="t-dot t-dot-r"></span>
+            <span class="t-dot t-dot-y"></span>
+            <span class="t-dot t-dot-g"></span>
+            <span class="terminal-filename">var.py</span>
+          </div>
+          <div class="terminal-body">
+            <div class="terminal-code"><span class="t-line">full_name = <span class="t-str">"Joshua Gordell Varley"</span></span><span class="t-line">var = full_name.split()[0][:4]  <span class="t-cmt"># it's in the name</span></span><span class="t-line"> </span><span class="t-line"><span class="t-kw">while</span> <span class="t-kw">True</span>:</span><span class="t-line">    print(var, <span class="t-str">"is var, var is"</span>, var)</span><span class="t-line">    <span class="t-kw">break</span>  <span class="t-cmt"># always has been</span></span></div>
+            <div class="terminal-output" id="terminal-output"><span class="t-prompt">&gt;&gt;&gt;</span><span class="t-out">Josh is var, var is Josh</span></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -245,12 +263,13 @@
 
     <!-- TODO: Section — e.g. currently working on / recent activity -->
 
-    <!-- ============ BEYOND WORK ============ -->
+    <!-- ============ HOMESTEAD SECTION ============ -->
     <section id="beyond" class="section section-alt">
       <div class="container">
-        <h2>Beyond Work</h2>
-        <p class="section-lede">I do lots of things. Just haven't put them here yet, check back later.</p>
+        <h2>The Homestead <img src="assets/favicon.png" alt="" class="homestead-icon" aria-hidden="true"></h2>
+        <p class="section-lede">The Homestead is a small pixel-art world built around who I am outside of a job title. Each building is a different part of my life — explore them at your own pace.</p>
         <div class="beyond-grid">
+          <!-- TODO: replace with real content -->
           <div class="beyond-card">
             <h3>Hobby one</h3>
           </div>
@@ -260,6 +279,9 @@
           <div class="beyond-card">
             <h3>Hobby three</h3>
           </div>
+        </div>
+        <div class="section-cta">
+          <a class="btn btn-primary" href="about.html">Enter the Homestead →</a>
         </div>
       </div>
     </section>
@@ -279,7 +301,7 @@
 
     <footer class="site-footer">
       <div class="container">
-        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.8.1</p>
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.9.0</p>
       </div>
     </footer>
 

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Varchive — Josh Varley</title>
+  <meta name="description" content="The Varchive — a collection of things by Josh Varley." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Calistoga&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="brand">Josh Varley</a>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Main</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">The Homestead</a></li>
+          <li><a href="varchive.html" class="active">Varchive</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="toggle-icon icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+            <rect fill="currentColor" x="2" y="0" width="2" height="1"/>
+            <rect fill="currentColor" x="1" y="1" width="3" height="1"/>
+            <rect fill="currentColor" x="0" y="2" width="3" height="1"/>
+            <rect fill="currentColor" x="0" y="3" width="2" height="2"/>
+            <rect fill="currentColor" x="0" y="5" width="3" height="1"/>
+            <rect fill="currentColor" x="1" y="6" width="3" height="1"/>
+            <rect fill="currentColor" x="2" y="7" width="2" height="1"/>
+          </svg>
+          <svg class="toggle-icon icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" aria-hidden="true">
+            <rect fill="currentColor" x="0" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="3" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="0" y="3" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="3" width="1" height="1"/>
+            <rect fill="currentColor" x="0" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="3" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="2" y="2" width="3" height="3"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ PAGE CONTENT ============ -->
+  <div class="page-content">
+
+    <!-- ============ PAGE HEADER ============ -->
+    <div class="page-header">
+      <div class="container">
+        <h1>Varchive</h1>
+        <!-- TODO: replace with real description -->
+        <p>Coming soon.</p>
+      </div>
+    </div>
+
+    <!-- ============ PLACEHOLDER ============ -->
+    <section class="section">
+      <div class="container">
+        <!-- TODO: replace with real content -->
+        <div class="coming-soon">
+          The Varchive is under construction. Check back later.
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.9.0</p>
+      </div>
+    </footer>
+
+  </div><!-- /page-content -->
+
+  <script src="main.js"></script>
+</body>
+</html>

@@ -92,6 +92,30 @@ if (themeToggle) {
   });
 }
 
+// ── About terminal — reveals code lines one by one when section scrolls into view ──
+const aboutTerminal = document.getElementById('about-terminal');
+if (aboutTerminal) {
+  const lines    = aboutTerminal.querySelectorAll('.t-line');
+  const outputEl = document.getElementById('terminal-output');
+  let   fired    = false;
+
+  function runTerminal() {
+    if (fired) return;
+    fired = true;
+    let delay = 150;
+    lines.forEach(line => {
+      setTimeout(() => line.classList.add('visible'), delay);
+      delay += 320;
+    });
+    if (outputEl) setTimeout(() => outputEl.classList.add('visible'), delay + 600);
+  }
+
+  const obs = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { runTerminal(); obs.disconnect(); }
+  }, { threshold: 0.4 });
+  obs.observe(aboutTerminal);
+}
+
 // Updates the toggle aria-label to match the current theme (icon swap is handled by CSS)
 function syncToggleLabel() {
   if (!themeToggle) return;

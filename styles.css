@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.10.0
+   Version: 0.10.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -26,6 +26,7 @@
      0.9.0 — Nav expanded (Work, Varchive, Contact); terminal code block in About; Homestead section rename; work.html + varchive.html added
      0.9.1 — Homestead section: correct favicon (cowboyfavicon.png), removed hobby cards, updated lede
      0.10.0 — Terminal comments removed; poem added to work.html; contact.html created; nav Contact → contact.html
+     0.10.1 — Interaction polish: custom easing curves, :active press states, hover transitions, media-query guards
    ============================================= */
 
 /* =============================================
@@ -81,6 +82,10 @@
   --shadow-glow:  0 4px 24px rgba(192, 40, 96, 0.2);
   --shadow-deep:  0 8px 40px rgba(0, 0, 0, 0.7);
   --shadow-card:  0 4px 16px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.04);
+
+  /* ── Easing curves ── */
+  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);   /* strong ease-out for entering elements */
+  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);  /* strong ease-in-out for on-screen motion */
 
   /* ── Terminal / code block ── */
   --t-bg:     #141210;
@@ -139,7 +144,7 @@ body::after {
 
 img { max-width: 100%; display: block; }
 
-a { color: var(--color-text-accent); text-decoration: none; }
+a { color: var(--color-text-accent); text-decoration: none; transition: color 150ms ease; }
 a:hover { color: var(--color-text-primary); }
 
 h1, h2, h3 {
@@ -226,9 +231,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   cursor: pointer;
   line-height: 1;
   color: var(--color-text-muted);
-  transition: opacity 0.15s ease, transform 0.15s ease;
+  transition: opacity 150ms ease, transform 150ms var(--ease-out);
 }
-.theme-toggle:hover { opacity: 0.65; transform: scale(1.2); }
+.theme-toggle:hover { opacity: 0.65; transform: scale(1.1); }
+.theme-toggle:active { transform: scale(0.95); transition: transform 80ms var(--ease-out); }
 
 /* Pixel art toggle icons — currentColor inherits button text color */
 .toggle-icon {
@@ -353,10 +359,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   border-radius: var(--radius-sm);
   border: none;
   cursor: pointer;
-  transition: transform 0.08s ease, box-shadow 0.08s ease;
+  transition: transform 150ms var(--ease-out), box-shadow 150ms var(--ease-out);
   text-transform: uppercase;
 }
 .btn:hover { text-decoration: none; transform: translateY(2px); }
+.btn:active { transform: scale(0.97); transition: transform 80ms var(--ease-out); }
 
 /* Primary — white background, dark text */
 .btn-primary {
@@ -495,11 +502,14 @@ ul { margin: 0; padding: 0; list-style: none; }
 .ds-cart {
   width: 180px;
   cursor: pointer;
-  transition: transform 0.15s ease, filter 0.15s ease;
+  transition: transform 200ms var(--ease-out), filter 200ms var(--ease-out);
   flex-shrink: 0;
 }
 .ds-cart-link { display: block; text-decoration: none; color: inherit; }
-.ds-cart:hover { transform: translateY(-8px) rotate(-1.5deg); filter: brightness(1.12); }
+.ds-cart-link:active .ds-cart { transform: scale(0.97); filter: brightness(1.0); transition: transform 80ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .ds-cart:hover { transform: translateY(-8px) rotate(-1.5deg); filter: brightness(1.12); }
+}
 
 /* Cartridge body — dark plastic shell */
 .ds-cart-body {
@@ -694,7 +704,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   white-space: pre;
   opacity: 0;
   transform: translateY(3px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
+  transition: opacity 220ms var(--ease-out), transform 220ms var(--ease-out);
 }
 .t-line.visible { opacity: 1; transform: none; }
 
@@ -710,7 +720,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   padding-top: var(--space-1);
   border-top: 1px solid rgba(255,255,255,0.07);
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transition: opacity 400ms var(--ease-out);
   white-space: pre;
 }
 .terminal-output.visible { opacity: 1; }
@@ -806,8 +816,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--color-text-muted);
   border: 1px solid var(--color-border-warm);
   padding: 0.4rem 0.7rem;
+  transition: color 150ms ease, border-color 150ms ease, transform 80ms var(--ease-out);
 }
 .resume-link:hover { color: var(--color-text-primary); border-color: rgba(240,236,248,0.4); }
+.resume-link:active { transform: scale(0.97); }
 
 /* =============================================
    HOMESTEAD MAP CANVAS
@@ -893,11 +905,14 @@ ul { margin: 0; padding: 0; list-style: none; }
   display: flex; flex-direction: column; align-items: center;
   cursor: pointer;
   z-index: 10;
-  transition: transform 0.15s ease;
+  transition: transform 150ms var(--ease-out);
   transform: translate(-50%, -50%);
 }
-.building:hover { transform: translate(-50%, -50%) scale(1.08) translateY(-3px); z-index: 20; }
-.building:hover .b-label { color: var(--color-text-primary); }
+.building:active { transform: translate(-50%, -50%) scale(0.97); transition: transform 80ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) {
+  .building:hover { transform: translate(-50%, -50%) scale(1.08) translateY(-3px); z-index: 20; }
+  .building:hover .b-label { color: var(--color-text-primary); }
+}
 
 .b-chimney { width: 8px; height: 12px; align-self: flex-end; margin-right: 14px; margin-bottom: -2px; }
 .b-roof    { width: 0; height: 0; border-left: 38px solid transparent; border-right: 38px solid transparent; border-bottom-width: 28px; border-bottom-style: solid; border-bottom-color: var(--color-wood-mid); }
@@ -1139,11 +1154,11 @@ ul { margin: 0; padding: 0; list-style: none; }
   box-shadow: 0 0 60px rgba(184,40,88,0.15), var(--shadow-deep);
   width: 100%; max-width: 520px;
   padding: var(--space-4);
-  transform: translateY(8px);
-  transition: transform 0.2s ease;
+  transform: translateY(12px) scale(0.97);
+  transition: transform 240ms var(--ease-out);
   position: relative;
 }
-.modal-overlay.is-open .modal-box { transform: translateY(0); }
+.modal-overlay.is-open .modal-box { transform: translateY(0) scale(1); }
 
 .modal-title    { font-family: var(--font-display); font-size: 1.8rem; color: var(--color-text-primary); margin: 0 0 var(--space-1); }
 .modal-subtitle { font-family: var(--font-pixel); font-size: 0.4rem; color: var(--color-text-muted); letter-spacing: 0.08em; margin-bottom: var(--space-3); }
@@ -1161,8 +1176,10 @@ ul { margin: 0; padding: 0; list-style: none; }
   color: var(--color-text-muted);
   cursor: pointer;
   box-shadow: none; transform: none;
+  transition: color 150ms ease, border-color 150ms ease, transform 80ms var(--ease-out);
 }
 .modal-close:hover { border-color: var(--color-text-accent); color: var(--color-text-primary); transform: none; box-shadow: none; }
+.modal-close:active { transform: scale(0.97); }
 
 /* =============================================
    RESPONSIVE

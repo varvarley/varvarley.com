@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.10.1
+   Version: 0.11.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -27,6 +27,7 @@
      0.9.1 — Homestead section: correct favicon (cowboyfavicon.png), removed hobby cards, updated lede
      0.10.0 — Terminal comments removed; poem added to work.html; contact.html created; nav Contact → contact.html
      0.10.1 — Interaction polish: custom easing curves, :active press states, hover transitions, media-query guards
+     0.11.0 — dvh viewport fix, emoji removal, :focus-visible, prefers-reduced-motion, scroll-stagger entrance, LinkedIn URL
    ============================================= */
 
 /* =============================================
@@ -147,6 +148,13 @@ img { max-width: 100%; display: block; }
 a { color: var(--color-text-accent); text-decoration: none; transition: color 150ms ease; }
 a:hover { color: var(--color-text-primary); }
 
+:focus-visible {
+  outline: 2px solid var(--color-alpine-rose);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+:focus:not(:focus-visible) { outline: none; }
+
 h1, h2, h3 {
   font-family: var(--font-display);
   line-height: 1.15;
@@ -264,7 +272,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .hero {
   position: fixed;
   top: 0; left: 0; right: 0;
-  height: 100vh;
+  height: 100dvh;
   z-index: 0;
   display: flex;
   align-items: flex-start; /* content anchors to top so we control position via padding */
@@ -398,7 +406,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 .scroll-content {
   position: relative;
   z-index: 1;
-  margin-top: 92vh;
+  margin-top: 92dvh;
   background: var(--color-bg-primary);
   border-radius: 20px 20px 0 0;
   box-shadow: 0 -20px 60px rgba(0, 0, 0, 0.7);
@@ -1325,6 +1333,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* =============================================
+   SCROLL REVEAL
+   Elements with .reveal fade + rise in when scrolled
+   into view. JS adds .is-visible via IntersectionObserver.
+   ============================================= */
+
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+}
+.reveal.is-visible { opacity: 1; transform: none; }
+
+/* Stagger each cartridge in the project grid */
+.project-grid .ds-cart-wrap.reveal:nth-child(2) { transition-delay: 110ms; }
+.project-grid .ds-cart-wrap.reveal:nth-child(3) { transition-delay: 220ms; }
+
+/* =============================================
    WORK PAGE / INNER PAGES
    Shared layout for work.html, varchive.html, etc.
    ============================================= */
@@ -1380,4 +1405,30 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-align: center;
   margin-top: var(--space-3);
   line-height: 2.4;
+}
+
+/* =============================================
+   REDUCED MOTION
+   Stop ambient loops and speed all transitions to
+   near-instant for users who prefer reduced motion.
+   ============================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Pause ambient decorative loops */
+  .star             { animation: none; }
+  .lantern-glow     { animation: none; box-shadow: 0 0 10px 4px rgba(248,208,128,0.55); }
+  .b-pole::after    { animation: none; }
+
+  /* Collapse reveal / terminal transitions to instant */
+  .reveal,
+  .t-line,
+  .terminal-output  { transition: none; }
+
+  /* Remove blinking typewriter cursor */
+  .hero-line1.typing,
+  .hero-line2.typing,
+  .hero-suffix.cycling {
+    animation: none;
+    border-right-color: transparent;
+  }
 }

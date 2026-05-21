@@ -97,11 +97,17 @@ const aboutTerminal = document.getElementById('about-terminal');
 if (aboutTerminal) {
   const lines    = aboutTerminal.querySelectorAll('.t-line');
   const outputEl = document.getElementById('terminal-output');
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let   fired    = false;
 
   function runTerminal() {
     if (fired) return;
     fired = true;
+    if (prefersReduced) {
+      lines.forEach(l => l.classList.add('visible'));
+      if (outputEl) outputEl.classList.add('visible');
+      return;
+    }
     let delay = 150;
     lines.forEach(line => {
       setTimeout(() => line.classList.add('visible'), delay);
@@ -114,6 +120,20 @@ if (aboutTerminal) {
     if (entries[0].isIntersecting) { runTerminal(); obs.disconnect(); }
   }, { threshold: 0.4 });
   obs.observe(aboutTerminal);
+}
+
+// ── Scroll reveal — adds .is-visible to .reveal elements when scrolled into view ──
+const revealEls = document.querySelectorAll('.reveal');
+if (revealEls.length) {
+  const revealObs = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        revealObs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach(el => revealObs.observe(el));
 }
 
 // Updates the toggle aria-label to match the current theme (icon swap is handled by CSS)

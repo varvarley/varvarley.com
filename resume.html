@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Resume — Josh Varley</title>
+  <meta name="description" content="Resume of Josh Varley — Data Analytics & Information Systems." />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Calistoga&family=JetBrains+Mono:ital,wght@0,400;0,500;1,400&family=Orbitron:wght@700&family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="assets/favicon.png" type="image/png" />
+
+  <style>
+    /* ── Resume document — scoped overrides, independent of site theme ── */
+
+    .resume-shell {
+      background: #f4f4f4;
+      padding: 2rem 1rem 3rem;
+    }
+
+    .resume-download-bar {
+      max-width: 780px;
+      margin: 0 auto 1.25rem;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .resume-doc {
+      max-width: 780px;
+      margin: 0 auto;
+      background: #ffffff;
+      color: #111111;
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      font-size: 11pt;
+      line-height: 1.45;
+      padding: 2.5rem 2.75rem;
+      box-shadow: 0 2px 16px rgba(0,0,0,0.12);
+    }
+
+    /* Header */
+    .rdoc-name {
+      text-align: center;
+      font-size: 20pt;
+      font-weight: 700;
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      color: #111111;
+      margin: 0 0 0.35rem;
+      letter-spacing: 0.01em;
+    }
+
+    .rdoc-contact {
+      text-align: center;
+      font-size: 10pt;
+      color: #111111;
+      margin: 0 0 1.1rem;
+    }
+
+    .rdoc-contact a {
+      color: #1a0aff;
+      text-decoration: underline;
+    }
+
+    .rdoc-contact span {
+      margin: 0 0.3em;
+    }
+
+    /* Section */
+    .rdoc-section {
+      margin-bottom: 0.9rem;
+    }
+
+    .rdoc-section-heading {
+      font-size: 11pt;
+      font-weight: 700;
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      color: #111111;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      border-bottom: 1.5px solid #111111;
+      padding-bottom: 1px;
+      margin: 0 0 0.45rem;
+    }
+
+    /* Entry row */
+    .rdoc-entry {
+      margin-bottom: 0.55rem;
+    }
+
+    .rdoc-entry-header,
+    .rdoc-entry-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+    }
+
+    .rdoc-entry-header strong,
+    .rdoc-entry-sub em {
+      font-family: 'Calibri', 'Segoe UI', Arial, sans-serif;
+      color: #111111;
+    }
+
+    .rdoc-entry-header strong { font-size: 11pt; font-weight: 700; }
+    .rdoc-entry-sub em        { font-style: italic; font-size: 11pt; }
+
+    .rdoc-location,
+    .rdoc-date {
+      font-size: 11pt;
+      white-space: nowrap;
+      flex-shrink: 0;
+      color: #111111;
+    }
+
+    /* Bullets */
+    .rdoc-bullets {
+      margin: 0.2rem 0 0 1.2rem;
+      padding: 0;
+      list-style: disc;
+    }
+
+    .rdoc-bullets li {
+      font-size: 11pt;
+      color: #111111;
+      margin-bottom: 0.15rem;
+      line-height: 1.45;
+    }
+
+    /* Tools rows */
+    .rdoc-tools {
+      font-size: 11pt;
+      color: #111111;
+      padding-left: 1.2rem;
+    }
+
+    .rdoc-tools div {
+      margin-bottom: 0.15rem;
+    }
+
+    /* Bottom download bar */
+    .resume-download-bar-bottom {
+      max-width: 780px;
+      margin: 1.25rem auto 0;
+      display: flex;
+      justify-content: flex-end;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============ NAV ============ -->
+  <header class="site-header" id="site-header">
+    <nav class="nav" aria-label="Primary">
+      <a href="index.html" class="brand">Josh Varley</a>
+
+      <button class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <div class="nav-right">
+        <ul class="nav-links">
+          <li><a href="index.html">Main</a></li>
+          <li><a href="work.html">Work</a></li>
+          <li><a href="about.html">The Homestead</a></li>
+          <li><a href="varchive.html">Varchive</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+
+        <button class="theme-toggle" id="theme-toggle" aria-label="Switch to light mode">
+          <svg class="toggle-icon icon-moon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 8 8" aria-hidden="true">
+            <rect fill="currentColor" x="2" y="0" width="2" height="1"/>
+            <rect fill="currentColor" x="1" y="1" width="3" height="1"/>
+            <rect fill="currentColor" x="0" y="2" width="3" height="1"/>
+            <rect fill="currentColor" x="0" y="3" width="2" height="2"/>
+            <rect fill="currentColor" x="0" y="5" width="3" height="1"/>
+            <rect fill="currentColor" x="1" y="6" width="3" height="1"/>
+            <rect fill="currentColor" x="2" y="7" width="2" height="1"/>
+          </svg>
+          <svg class="toggle-icon icon-sun" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 7 7" aria-hidden="true">
+            <rect fill="currentColor" x="0" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="3" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="0" width="1" height="1"/>
+            <rect fill="currentColor" x="0" y="3" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="3" width="1" height="1"/>
+            <rect fill="currentColor" x="0" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="3" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="6" y="6" width="1" height="1"/>
+            <rect fill="currentColor" x="2" y="2" width="3" height="3"/>
+          </svg>
+        </button>
+      </div>
+    </nav>
+  </header>
+
+  <!-- ============ RESUME SHELL ============ -->
+  <div class="page-content">
+    <div class="resume-shell">
+
+      <!-- Top download button -->
+      <div class="resume-download-bar">
+        <a class="btn btn-ghost" href="assets/JoshuaVarley.pdf" download="JoshuaVarley_Resume.pdf">Download PDF ↓</a>
+      </div>
+
+      <!-- ============ RESUME DOCUMENT ============ -->
+      <div class="resume-doc" role="main">
+
+        <!-- Header -->
+        <h1 class="rdoc-name">Joshua Varley</h1>
+        <p class="rdoc-contact">
+          <span>(801) 643-5780</span> •
+          <span><a href="mailto:00jgvarley@gmail.com">00jgvarley@gmail.com</a></span> •
+          <span><a href="https://www.linkedin.com/in/joshvarley/" target="_blank" rel="noopener">linkedin.com/in/JoshVarley</a></span> •
+          <span><a href="https://github.com/varvarley" target="_blank" rel="noopener">github.com/varvarley</a></span> •
+          <span><a href="https://varvarley.com">varvarley.com</a></span>
+        </p>
+
+        <!-- ── EDUCATION ── -->
+        <div class="rdoc-section">
+          <h2 class="rdoc-section-heading">Education</h2>
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>Utah State University, Jon M. Huntsman School of Business</strong>
+              <span class="rdoc-location">Logan, UT</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Bachelor of Science: Data Analytics, Information Systems – Data Engineering Emphasis</em>
+              <span class="rdoc-date">May 2026</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>GPA: 3.6, working 30 hours per week</li>
+              <li>Member: USU Skateboard Club, Covey Leadership Club, USU Snow Club, Events Committee Volunteer</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── TOOLS ── -->
+        <div class="rdoc-section">
+          <h2 class="rdoc-section-heading">Tools</h2>
+          <div class="rdoc-tools">
+            <div><strong>Languages:</strong> Python &amp; SQL, Object Oriented Programming, LLM Workflow Automation</div>
+            <div><strong>Technologies:</strong> Microsoft Excel, AWS, MS SQL, AI-assisted Development tools (Claude Code, Cursor)</div>
+          </div>
+        </div>
+
+        <!-- ── PROJECTS ── -->
+        <div class="rdoc-section">
+          <h2 class="rdoc-section-heading">Projects</h2>
+
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>Utah State University, Data 5330</strong>
+              <span class="rdoc-location">Logan, UT</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Sportsbook Data Mart</em>
+              <span class="rdoc-date">April 2025</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>Built a Python ETL pipeline (pandas, psycopg2, pymssql) to load SQL Server and NFL CSV data into a normalized PostgreSQL data mart on AWS RDS</li>
+              <li>Designed commission logic and analytical SQL queries for sportsbook performance and customer analysis across 2,000 records and 9 NFL seasons</li>
+              <li>Developed OLS regression models for customer lifetime value prediction and documented the system with an ERD and data dictionary</li>
+            </ul>
+          </div>
+
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>Utah State University, Data 5360</strong>
+              <span class="rdoc-location">Logan, UT</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Data Warehousing &amp; Analytics Project</em>
+              <span class="rdoc-date">April 2025</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>Designed a 3NF operational model and built a relational ERD (Lucidchart) to standardize source structure</li>
+              <li>Built staging layers and authored SQL models to normalize raw Fivetran loads from AWS RDS/S3 into Snowflake</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── WORK EXPERIENCE ── -->
+        <div class="rdoc-section">
+          <h2 class="rdoc-section-heading">Work Experience</h2>
+
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>Utah State University – Information Technology</strong>
+              <span class="rdoc-location">Logan, UT</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Computer Lab Consultant</em>
+              <span class="rdoc-date">Aug 2023 – Present</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>Guided students, staff, and community members on lab tech, software, and printing workflows</li>
+              <li>Operated and maintained Bambu Lab and Prusa 3D printers using 3D printing best practices</li>
+            </ul>
+          </div>
+
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>Creo Consulting</strong>
+              <span class="rdoc-location">Provo, UT</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Implementation Intern</em>
+              <span class="rdoc-date">Jan – April 2026</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>Migrated client sales, marketing, and deal/contact data into HubSpot CRM, ensuring data integrity across platform onboarding</li>
+              <li>Supported RevOps consulting engagements through HubSpot implementation and workflow automation across lead management and deal progression</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── VOLUNTEER / LEADERSHIP ── -->
+        <div class="rdoc-section">
+          <h2 class="rdoc-section-heading">Volunteer / Leadership</h2>
+
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>USU Skateboard Club</strong>
+              <span class="rdoc-location">Logan, Utah</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Vice President</em>
+              <span class="rdoc-date">Sep 2024 – May 2026</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>Led growth by organizing and promoting events, teaching beginners, and managing logistics like scheduling and campus coordination</li>
+            </ul>
+          </div>
+
+          <div class="rdoc-entry">
+            <div class="rdoc-entry-header">
+              <strong>The Church of Jesus Christ of Latter-day Saints</strong>
+              <span class="rdoc-location">Lima, Peru / Reno, Nevada</span>
+            </div>
+            <div class="rdoc-entry-sub">
+              <em>Full-Time Volunteer, Spanish Speaking</em>
+              <span class="rdoc-date">Aug 2019 – 2021</span>
+            </div>
+            <ul class="rdoc-bullets">
+              <li>Guided 6–12 member teams in goal setting and attainment</li>
+              <li>Nurtured daily connections with individuals from diverse cultural, social, and religious backgrounds</li>
+              <li>Delivered weekly training sessions on time management, service, and teaching</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- ── SKILLS / INTERESTS ── -->
+        <div class="rdoc-section">
+          <h2 class="rdoc-section-heading">Skills / Interests</h2>
+          <ul class="rdoc-bullets">
+            <li>Fluent in conversational &amp; written Spanish</li>
+            <li>Avid soccer enthusiast – 5A All-State goalkeeper, School record for most shutouts at Viewmont High, USU Men's Club Soccer, Intramural Champion</li>
+          </ul>
+        </div>
+
+      </div><!-- /resume-doc -->
+
+      <!-- Bottom download button -->
+      <div class="resume-download-bar-bottom">
+        <a class="btn btn-ghost" href="assets/JoshuaVarley.pdf" download="JoshuaVarley_Resume.pdf">Download PDF ↓</a>
+      </div>
+
+    </div><!-- /resume-shell -->
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.12.0</p>
+      </div>
+    </footer>
+
+  </div><!-- /page-content -->
+
+  <script src="main.js"></script>
+</body>
+</html>

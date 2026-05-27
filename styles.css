@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.11.0
+   Version: 0.12.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -28,6 +28,7 @@
      0.10.0 — Terminal comments removed; poem added to work.html; contact.html created; nav Contact → contact.html
      0.10.1 — Interaction polish: custom easing curves, :active press states, hover transitions, media-query guards
      0.11.0 — dvh viewport fix, emoji removal, :focus-visible, prefers-reduced-motion, scroll-stagger entrance, LinkedIn URL
+     0.12.0 — resume.html added; hero button updated to link to resume page; PDF link fixed
    ============================================= */
 
 /* =============================================

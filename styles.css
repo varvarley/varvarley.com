@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.12.0
+   Version: 0.13.0
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -29,6 +29,7 @@
      0.10.1 — Interaction polish: custom easing curves, :active press states, hover transitions, media-query guards
      0.11.0 — dvh viewport fix, emoji removal, :focus-visible, prefers-reduced-motion, scroll-stagger entrance, LinkedIn URL
      0.12.0 — resume.html added; hero button updated to link to resume page; PDF link fixed
+     0.13.0 — Varchive playlist grid added; .playlist-grid and .playlist-card components
    ============================================= */
 
 /* =============================================
@@ -1406,6 +1407,63 @@ ul { margin: 0; padding: 0; list-style: none; }
   text-align: center;
   margin-top: var(--space-3);
   line-height: 2.4;
+}
+
+/* =============================================
+   VARCHIVE — Playlist Cards
+   2-col mobile → 4-col desktop grid of image cards,
+   each linking to a Spotify playlist in a new tab.
+   ============================================= */
+
+.playlist-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+  margin-top: var(--space-4);
+}
+
+@media (min-width: 900px) {
+  .playlist-grid { grid-template-columns: repeat(4, 1fr); }
+}
+
+.playlist-card {
+  display: block;
+  text-decoration: none;
+  color: inherit;
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-warm);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .playlist-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glow), var(--shadow-deep);
+  }
+}
+
+.playlist-card:active {
+  transform: scale(0.97);
+  transition: transform 80ms var(--ease-out);
+}
+
+.playlist-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.playlist-label {
+  padding: var(--space-2);
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  color: var(--color-text-muted);
+  line-height: 1.8;
+  text-align: center;
 }
 
 /* =============================================

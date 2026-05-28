@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.13.0
+   Version: 0.14.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -30,6 +30,8 @@
      0.11.0 — dvh viewport fix, emoji removal, :focus-visible, prefers-reduced-motion, scroll-stagger entrance, LinkedIn URL
      0.12.0 — resume.html added; hero button updated to link to resume page; PDF link fixed
      0.13.0 — Varchive playlist grid added; .playlist-grid and .playlist-card components
+     0.14.0 — work.html design polish: page-header gradient accent, poem stanza stagger reveal, section indexes, coming-soon redesign
+     0.14.1 — Varchive polish: playlist card stagger reveal, section-index label, hover lift reduced
    ============================================= */
 
 /* =============================================
@@ -98,6 +100,11 @@
   --t-kw:     #9c86c8;    /* muted lavender — keywords */
   --t-cmt:    #7a8c5e;    /* olive-green — comments */
   --t-output: #e8d5a0;    /* warm amber — output */
+
+  /* ── Work icon category backgrounds ── */
+  --color-work-technical-bg: #080e18;  /* deep navy for code/data */
+  --color-work-creative-bg:  #180808;  /* deep rose for creative */
+  --color-work-people-bg:    #080e0a;  /* deep forest for people */
 }
 
 /* =============================================
@@ -486,171 +493,76 @@ ul { margin: 0; padding: 0; list-style: none; }
 .facts li span:last-child  { color: var(--color-text-primary); }
 
 /* =============================================
-   PROJECTS — Nintendo DS Cartridge style
-   Each project is a CSS-only DS cartridge card.
-   Structure: .ds-cart-wrap > .ds-cart (.ds-cart-body + .ds-cart-connector) + .ds-cart-desc
+   WORK ICON GRID — Home page Work section
+   Three icon cards: Technical, Creative, People
+   Each links to work.html
    ============================================= */
 
-/* Outer grid — three cartridges centered in a row */
-.project-grid {
+.work-icon-grid {
   display: flex;
-  gap: var(--space-5);
+  gap: var(--space-4);
   justify-content: center;
   flex-wrap: wrap;
-  align-items: flex-start;
+  margin-top: var(--space-4);
 }
 
-/* Wrapper: cartridge on top, description below */
-.ds-cart-wrap {
+.work-icon-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 180px;
+  gap: var(--space-2);
+  text-decoration: none;
+  color: inherit;
+  width: 140px;
 }
 
-/* The full cartridge (body + connector nub) */
-.ds-cart {
-  width: 180px;
-  cursor: pointer;
-  transition: transform 200ms var(--ease-out), filter 200ms var(--ease-out);
-  flex-shrink: 0;
-}
-.ds-cart-link { display: block; text-decoration: none; color: inherit; }
-.ds-cart-link:active .ds-cart { transform: scale(0.97); filter: brightness(1.0); transition: transform 80ms var(--ease-out); }
-@media (hover: hover) and (pointer: fine) {
-  .ds-cart:hover { transform: translateY(-8px) rotate(-1.5deg); filter: brightness(1.12); }
-}
-
-/* Cartridge body — dark plastic shell */
-.ds-cart-body {
-  background: #1e1e1e;
-  border-radius: 10px 10px 3px 3px;
-  border: 3px solid #3c3c3c;
-  overflow: hidden;
-  box-shadow:
-    0 4px 20px rgba(0,0,0,0.8),
-    inset 0 1px 0 rgba(255,255,255,0.07),
-    inset 0 -1px 0 rgba(0,0,0,0.4);
-}
-
-/* Top strip — light grey "NINTENDO DS" label area */
-.ds-cart-header {
-  background: #dcdcdc;
-  padding: 5px 10px 4px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 2px solid #b4b4b4;
-}
-.ds-cart-header-brand {
-  font-family: var(--font-pixel);
-  font-size: 0.38rem;
-  font-weight: bold;
-  color: #111;
-  letter-spacing: 0.05em;
-}
-.ds-cart-header-icon {
-  font-size: 0.55rem;
-  color: #444;
-}
-
-/* Artwork / label — unique gradient per project */
-.ds-cart-art {
-  height: 138px;
+.work-icon-face {
+  width: 120px;
+  height: 120px;
+  border-radius: var(--radius);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--space-2);
-  position: relative;
-  overflow: hidden;
-}
-/* Sheen overlay — mimics the glossy cartridge label */
-.ds-cart-art::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 50%);
-  pointer-events: none;
-}
-.ds-cart-title {
-  font-family: var(--font-body);
-  font-weight: 500;
-  font-size: 1.05rem;
-  color: #fff;
-  text-align: center;
-  text-shadow: 0 2px 10px rgba(0,0,0,0.9), 0 0 20px rgba(0,0,0,0.6);
-  position: relative;
-  z-index: 1;
-  margin: 0;
+  border: 1px solid var(--color-border-warm);
+  box-shadow: var(--shadow-card);
+  transition: transform 200ms var(--ease-out), box-shadow 200ms var(--ease-out);
 }
 
-/* Bottom strip — light grey product code */
-.ds-cart-footer {
-  background: #dcdcdc;
-  padding: 4px 10px 5px;
-  text-align: center;
-  border-top: 2px solid #b4b4b4;
-}
-.ds-cart-footer-code {
-  font-family: var(--font-pixel);
-  font-size: 0.28rem;
-  color: #444;
-  letter-spacing: 0.08em;
+@media (hover: hover) and (pointer: fine) {
+  .work-icon-card:hover .work-icon-face {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-glow), var(--shadow-deep);
+  }
 }
 
-/* Connector nub — sticks out below the body with gold contacts */
-.ds-cart-connector {
-  width: 58px;
-  height: 13px;
-  background: #1a1a1a;
-  border: 3px solid #3c3c3c;
-  border-top: none;
-  border-radius: 0 0 5px 5px;
-  margin: 0 auto;
-  position: relative;
-  overflow: hidden;
-}
-/* Gold contacts inside the connector */
-.ds-cart-connector::before {
-  content: '';
-  position: absolute;
-  top: 2px; left: 5px; right: 5px; bottom: 2px;
-  background: repeating-linear-gradient(
-    90deg,
-    #c8a840 0px, #c8a840 4px,
-    #1a1a1a 4px, #1a1a1a 7px
-  );
+.work-icon-card:active .work-icon-face {
+  transform: scale(0.97);
+  transition: transform 80ms var(--ease-out);
 }
 
-/* Per-cartridge label color schemes */
-.ds-cart[data-project="1"] .ds-cart-art { background: linear-gradient(145deg, #112a6e, #1a50b8, #2880d8, #1560a8); }
-.ds-cart[data-project="2"] .ds-cart-art { background: linear-gradient(145deg, #6e1111, #b81a1a, #d83838, #a81515); }
-.ds-cart[data-project="3"] .ds-cart-art { background: linear-gradient(145deg, #116e22, #1ab832, #28d848, #15a825); }
-
-/* Description block below each cartridge */
-.ds-cart-desc {
-  margin-top: var(--space-2);
-  width: 100%;
-  text-align: center;
-}
-.ds-cart-desc p { font-size: 0.85rem; text-align: left; margin-bottom: var(--space-1); }
-
-/* Tags — pixel pill labels */
-.tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin: var(--space-1) 0; justify-content: center; }
-.tags li {
-  font-family: var(--font-pixel);
-  font-size: 0.38rem;
-  padding: 0.3rem 0.55rem;
-  background: rgba(240,236,248,0.07);
+.work-icon-face svg {
+  width: 48px;
+  height: auto;
+  image-rendering: pixelated;
   color: var(--color-text-accent);
-  border: 1px solid rgba(240,236,248,0.15);
-  border-radius: 2px;
 }
 
-.project-links {
-  display: flex; gap: var(--space-2); margin-top: var(--space-1); justify-content: center;
+.work-icon-label {
   font-family: var(--font-pixel);
-  font-size: 0.42rem;
+  font-size: 0.45rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.08em;
+  text-align: center;
+}
+
+.work-icon-card[data-work="technical"] .work-icon-face {
+  background: linear-gradient(145deg, var(--color-work-technical-bg), var(--color-alpine-violet));
+}
+.work-icon-card[data-work="creative"] .work-icon-face {
+  background: linear-gradient(145deg, var(--color-work-creative-bg), var(--color-alpine-rose));
+}
+.work-icon-card[data-work="people"] .work-icon-face {
+  background: linear-gradient(145deg, var(--color-work-people-bg), var(--color-bg-ground));
 }
 
 /* =============================================
@@ -1267,7 +1179,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   );
 }
 
-
 /* Hero text — dark on the light gradient, with soft white glow for legibility */
 [data-theme="light"] .hero-content { text-shadow: 0 1px 8px rgba(255,255,255,0.5); }
 [data-theme="light"] .hero-name    { color: #1a1218; }
@@ -1314,16 +1225,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 [data-theme="light"] .divider          { background: #faf7f5; }
 [data-theme="light"] .divider::before  { background: #f0ece8; }
 
-/* Tags */
-[data-theme="light"] .tags li {
-  background: rgba(26,18,24,0.05);
-  color: #4a3850;
-  border-color: rgba(26,18,24,0.14);
-}
-
 /* Project + beyond card text */
 [data-theme="light"] .beyond-card h3  { color: #4a3850; }
-[data-theme="light"] .project-links a { color: #4a3850; }
 [data-theme="light"] .contact-links a { color: #4a3850; }
 
 /* Mobile nav dropdown in light mode — scoped to mobile only */
@@ -1342,14 +1245,19 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .reveal {
   opacity: 0;
-  transform: translateY(12px);
-  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  transform: translateY(8px) scale(0.97);
+  transition: opacity 400ms var(--ease-out), transform 400ms var(--ease-out);
 }
 .reveal.is-visible { opacity: 1; transform: none; }
 
-/* Stagger each cartridge in the project grid */
-.project-grid .ds-cart-wrap.reveal:nth-child(2) { transition-delay: 110ms; }
-.project-grid .ds-cart-wrap.reveal:nth-child(3) { transition-delay: 220ms; }
+/* Stagger each card in the work icon grid */
+.work-icon-grid .work-icon-card.reveal:nth-child(2) { transition-delay: 60ms; }
+.work-icon-grid .work-icon-card.reveal:nth-child(3) { transition-delay: 120ms; }
+
+/* Stagger each playlist card */
+.playlist-grid .playlist-card.reveal:nth-child(2) { transition-delay: 70ms; }
+.playlist-grid .playlist-card.reveal:nth-child(3) { transition-delay: 140ms; }
+.playlist-grid .playlist-card.reveal:nth-child(4) { transition-delay: 210ms; }
 
 /* =============================================
    WORK PAGE / INNER PAGES
@@ -1360,8 +1268,23 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 .page-header {
   background: var(--color-bg-surface);
-  border-bottom: 1px solid var(--color-border);
   padding: var(--space-5) 0 var(--space-4);
+  position: relative;
+}
+
+.page-header::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-alpine-rose) 25%,
+    var(--color-alpine-ember) 75%,
+    transparent 100%
+  );
+  opacity: 0.55;
 }
 .page-header h1 {
   font-family: var(--font-heading);
@@ -1378,35 +1301,57 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 /* Poem block */
-.poem { max-width: 660px; }
+.poem {
+  max-width: 660px;
+  padding-left: var(--space-3);
+  border-left: 2px solid color-mix(in srgb, var(--color-alpine-rose) 22%, transparent);
+}
 .poem-title {
   font-family: var(--font-body);
   font-size: 0.6rem;
   color: var(--color-text-muted);
-  letter-spacing: 0.14em;
+  letter-spacing: 0.2em;
   text-transform: lowercase;
-  margin: 0 0 var(--space-2);
+  margin: 0 0 var(--space-3);
 }
-.poem-body {
+.poem-lines { display: flex; flex-direction: column; }
+.poem-stanza {
   font-family: var(--font-body);
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: var(--color-text-primary);
-  line-height: 2;
-  margin: 0;
+  line-height: 2.1;
+  margin: 0 0 var(--space-3);
   font-style: italic;
+}
+.poem-stanza:last-child { margin-bottom: 0; }
+
+/* Stagger each stanza — delays compound with the reveal transition */
+.poem-lines .poem-stanza.reveal:nth-child(2) { transition-delay: 80ms; }
+.poem-lines .poem-stanza.reveal:nth-child(3) { transition-delay: 160ms; }
+.poem-lines .poem-stanza.reveal:nth-child(4) { transition-delay: 240ms; }
+
+/* Numeric index label above section headings — 01 / 02 / 03 */
+.section-index {
+  display: block;
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: color-mix(in srgb, var(--color-alpine-rose) 70%, transparent);
+  letter-spacing: 0.18em;
+  margin-bottom: var(--space-1);
 }
 
 /* Placeholder "coming soon" block */
 .coming-soon {
   font-family: var(--font-pixel);
-  font-size: 0.48rem;
+  font-size: 0.44rem;
   color: var(--color-text-muted);
-  border: 1px dashed var(--color-border-warm);
-  border-radius: var(--radius-sm);
-  padding: var(--space-4) var(--space-3);
+  border-top: 1px solid var(--color-border-warm);
+  border-bottom: 1px solid var(--color-border-warm);
+  padding: var(--space-5) var(--space-3);
   text-align: center;
-  margin-top: var(--space-3);
-  line-height: 2.4;
+  margin-top: var(--space-4);
+  line-height: 3;
+  letter-spacing: 0.1em;
 }
 
 /* =============================================
@@ -1440,7 +1385,7 @@ ul { margin: 0; padding: 0; list-style: none; }
 
 @media (hover: hover) and (pointer: fine) {
   .playlist-card:hover {
-    transform: translateY(-6px);
+    transform: translateY(-4px);
     box-shadow: var(--shadow-glow), var(--shadow-deep);
   }
 }

@@ -4,7 +4,7 @@ Read this file before making any changes. These are standing rules for all work 
 
 ---
 
-## Current Version: 0.14.0
+## Current Version: 0.15.0
 
 This project uses semantic versioning: `MAJOR.MINOR.PATCH`
 

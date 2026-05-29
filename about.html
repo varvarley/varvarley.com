@@ -26,8 +26,6 @@
       <span class="star">★</span>
     </div>
 
-    <!-- TODO: replace # with actual resume URL or PDF path -->
-    <a href="assets/resume.pdf" class="resume-link" target="_blank" rel="noopener">[ résumé ↗ ]</a>
   </header>
 
   <nav style="padding:0.6rem 1.5rem; background:var(--color-bg-primary); border-bottom:1px solid var(--color-border);">
@@ -37,154 +35,129 @@
   <!-- ============ MAP CANVAS ============ -->
   <div class="map-canvas" role="main" aria-label="Homestead map — click buildings to explore">
 
-    <!-- Dirt paths (SVG) -->
-    <svg class="map-paths" viewBox="0 0 1000 620" preserveAspectRatio="none" aria-hidden="true">
+    <!-- Dirt paths (SVG with cobblestone pattern fill) -->
+    <svg class="map-paths" viewBox="0 0 1000 660" preserveAspectRatio="none" aria-hidden="true">
+      <defs>
+        <pattern id="pathPat" x="0" y="0" width="64" height="64" patternUnits="userSpaceOnUse">
+          <image href="assets/hs-path.png" width="64" height="64" style="image-rendering:pixelated"/>
+        </pattern>
+      </defs>
       <!-- Horizontal main path -->
-      <rect x="0" y="278" width="1000" height="52" rx="6" fill="#3d2510" opacity="0.85" />
+      <rect x="0" y="296" width="1000" height="56" fill="url(#pathPat)" />
       <!-- Vertical main path -->
-      <rect x="468" y="0" width="52" height="620" rx="6" fill="#3d2510" opacity="0.85" />
-      <!-- Diagonal to top-left (Varber Shop ~12%, 18%) -->
-      <line x1="468" y1="278" x2="125" y2="125" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
-      <!-- Diagonal to top-right (Varden ~82%, 18%) -->
-      <line x1="520" y1="278" x2="820" y2="125" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
-      <!-- Diagonal to bottom-left (Varcheologist ~18%, 80%) -->
-      <line x1="468" y1="330" x2="200" y2="500" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
-      <!-- Diagonal to bottom-right (Varchitect ~84%, 80%) -->
-      <line x1="520" y1="330" x2="820" y2="500" stroke="#3d2510" stroke-width="28" stroke-linecap="round" opacity="0.85" />
+      <rect x="472" y="0" width="56" height="660" fill="url(#pathPat)" />
+      <!-- Diagonal to top-left (Varber Shop) -->
+      <line x1="472" y1="296" x2="130" y2="130" stroke="#7a5428" stroke-width="32" stroke-linecap="round" opacity="0.92" />
+      <!-- Diagonal to top-right (Varden) -->
+      <line x1="528" y1="296" x2="825" y2="130" stroke="#7a5428" stroke-width="32" stroke-linecap="round" opacity="0.92" />
+      <!-- Diagonal to bottom-left (Varcheologist) -->
+      <line x1="472" y1="352" x2="215" y2="530" stroke="#7a5428" stroke-width="32" stroke-linecap="round" opacity="0.92" />
+      <!-- Diagonal to bottom-right (Varchitect) -->
+      <line x1="528" y1="352" x2="830" y2="530" stroke="#7a5428" stroke-width="32" stroke-linecap="round" opacity="0.92" />
     </svg>
 
-    <!-- Snow patches -->
-    <div class="snow-patch" style="width:90px;height:40px;top:8%;left:30%;"></div>
-    <div class="snow-patch" style="width:60px;height:28px;top:12%;left:58%;"></div>
-    <div class="snow-patch" style="width:75px;height:32px;top:70%;left:38%;"></div>
-    <div class="snow-patch" style="width:50px;height:22px;top:20%;left:72%;"></div>
-    <div class="snow-patch" style="width:80px;height:34px;top:82%;left:60%;"></div>
-    <div class="snow-patch" style="width:55px;height:24px;top:55%;left:20%;"></div>
+    <!-- ============ PINE TREES ============ -->
+    <!-- Edge forest — left -->
+    <img class="map-pine" src="assets/hs-pine.png" style="left:2%;top:8%;"    alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:5%;top:13%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:2%;top:60%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:6%;top:68%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:3%;top:80%;"   alt="" aria-hidden="true">
+    <!-- Edge forest — right -->
+    <img class="map-pine" src="assets/hs-pine.png" style="left:93%;top:7%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:96%;top:13%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:95%;top:62%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:92%;top:72%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:97%;top:82%;"  alt="" aria-hidden="true">
+    <!-- Edge forest — top -->
+    <img class="map-pine" src="assets/hs-pine.png" style="left:22%;top:4%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:30%;top:2%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:38%;top:5%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:60%;top:3%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:70%;top:5%;"   alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:78%;top:2%;"   alt="" aria-hidden="true">
+    <!-- Edge forest — bottom -->
+    <img class="map-pine" src="assets/hs-pine.png" style="left:18%;top:90%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:28%;top:94%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:68%;top:91%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:76%;top:95%;"  alt="" aria-hidden="true">
+    <!-- Interior accent trees (corners of zones) -->
+    <img class="map-pine" src="assets/hs-pine.png" style="left:34%;top:10%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:63%;top:10%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:35%;top:78%;"  alt="" aria-hidden="true">
+    <img class="map-pine" src="assets/hs-pine.png" style="left:64%;top:80%;"  alt="" aria-hidden="true">
 
-    <!-- Pine trees along edges -->
-    <div class="pine" style="left:2%;top:5%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:5%;top:8%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:3%;top:60%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:92%;top:5%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:95%;top:10%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:94%;top:62%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:35%;top:2%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:60%;top:2%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:20%;top:88%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
-    <div class="pine" style="left:70%;top:90%;"><div class="pine-top"></div><div class="pine-mid"></div><div class="pine-bot"></div><div class="pine-trunk"></div></div>
+    <!-- ============ LANTERNS ============ -->
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:26%;top:40%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:39%;top:40%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:61%;top:40%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:74%;top:40%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:46%;top:18%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:46%;top:62%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:54%;top:18%;"  alt="" aria-hidden="true">
+    <img class="map-lantern" src="assets/hs-lantern.png" style="left:54%;top:62%;"  alt="" aria-hidden="true">
 
-    <!-- Lantern posts along paths -->
-    <div class="lantern-post" style="left:25%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
-    <div class="lantern-post" style="left:38%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
-    <div class="lantern-post" style="left:60%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
-    <div class="lantern-post" style="left:73%;top:37%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
-    <div class="lantern-post" style="left:46%;top:18%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
-    <div class="lantern-post" style="left:46%;top:60%;"><div class="lantern-glow"></div><div class="lantern-pole"></div></div>
+    <!-- ============ SNOW PATCHES ============ -->
+    <img class="map-snow" src="assets/hs-snow.png" style="left:9%;top:10%;"   alt="" aria-hidden="true">
+    <img class="map-snow" src="assets/hs-snow.png" style="left:58%;top:14%;"  alt="" aria-hidden="true">
+    <img class="map-snow" src="assets/hs-snow.png" style="left:37%;top:72%;"  alt="" aria-hidden="true">
+    <img class="map-snow" src="assets/hs-snow.png" style="left:73%;top:22%;"  alt="" aria-hidden="true">
+    <img class="map-snow" src="assets/hs-snow.png" style="left:62%;top:82%;"  alt="" aria-hidden="true">
+    <img class="map-snow" src="assets/hs-snow.png" style="left:20%;top:57%;"  alt="" aria-hidden="true">
 
     <!-- ============ BUILDINGS ============ -->
 
-    <!-- Varber Shop — top-left — Purple tones + animated barber pole -->
+    <!-- Varber Shop — top-left -->
     <div class="building" id="b-varber"
-         style="left:13%;top:20%;"
+         style="left:13%;top:22%;"
          onclick="openModal('varber')"
          role="button" tabindex="0" aria-label="Varber Shop">
-      <div class="b-chimney"></div>
-      <div class="b-roof"></div>
-      <div class="b-body">
-        <div class="b-win b-win-l"></div>
-        <div class="b-win b-win-r"></div>
-        <div class="b-door"></div>
-        <div class="b-pole"></div>
-      </div>
+      <img class="building-sprite" src="assets/hs-varber.png" alt="Varber Shop">
       <div class="b-label">Varber Shop</div>
     </div>
 
-    <!-- The Univarsity — top-center — Old Main clock tower -->
+    <!-- The Univarsity — top-center -->
     <div class="building" id="b-univarsity"
-         style="left:50%;top:12%;"
+         style="left:50%;top:13%;"
          onclick="openModal('univarsity')"
          role="button" tabindex="0" aria-label="The Univarsity">
-      <div class="b-tower">
-        <div class="b-tower-peak"></div>
-        <div class="b-tower-body"></div>
-      </div>
-      <div class="b-roof"></div>
-      <div class="b-body">
-        <div class="b-win b-win-l"></div>
-        <div class="b-win b-win-r"></div>
-        <div class="b-door"></div>
-      </div>
+      <img class="building-sprite" src="assets/hs-univarsity.png" alt="The Univarsity">
       <div class="b-label">The Univarsity</div>
     </div>
 
-    <!-- The Varden — top-right — Rustic greenhouse A-frame -->
+    <!-- The Varden — top-right -->
     <div class="building" id="b-varden"
-         style="left:82%;top:20%;"
+         style="left:82%;top:22%;"
          onclick="openModal('varden')"
          role="button" tabindex="0" aria-label="The Varden">
-      <div class="b-gh-roof">
-        <div class="b-gh-l"></div>
-        <div class="b-gh-r"></div>
-      </div>
-      <div class="b-body">
-        <div class="b-win b-win-l"></div>
-        <div class="b-win b-win-r"></div>
-        <div class="b-door"></div>
-      </div>
+      <img class="building-sprite" src="assets/hs-varden.png" alt="The Varden">
       <div class="b-label">The Varden</div>
     </div>
 
-    <!-- Var Dealership — middle-left — Showroom + pixel cars in forecourt -->
+    <!-- Var Dealership — middle-left -->
     <div class="building" id="b-dealership"
-         style="left:8%;top:52%;"
+         style="left:8%;top:54%;"
          onclick="openModal('dealership')"
          role="button" tabindex="0" aria-label="Var Dealership">
-      <div class="b-roof"></div>
-      <div class="b-body">
-        <div class="b-win b-win-l"></div>
-        <div class="b-win b-win-r"></div>
-        <div class="b-door"></div>
-      </div>
-      <div class="b-forecourt">
-        <div class="b-car b-car-1"></div>
-        <div class="b-car b-car-2"></div>
-        <div class="b-car b-car-3"></div>
-      </div>
+      <img class="building-sprite" src="assets/hs-dealership.png" alt="Var Dealership">
       <div class="b-label">Var Dealership</div>
     </div>
 
-    <!-- Varchitect — middle-right — Modern glass tower -->
+    <!-- Varchitect — middle-right -->
     <div class="building" id="b-varchitect"
-         style="left:87%;top:52%;"
+         style="left:88%;top:54%;"
          onclick="openModal('varchitect')"
          role="button" tabindex="0" aria-label="Varchitect">
-      <div class="b-modern-roof"></div>
-      <div class="b-body">
-        <div class="b-glass-grid">
-          <div class="b-gpane"></div><div class="b-gpane"></div><div class="b-gpane"></div>
-          <div class="b-gpane"></div><div class="b-gpane"></div><div class="b-gpane"></div>
-        </div>
-        <div class="b-door"></div>
-      </div>
+      <img class="building-sprite" src="assets/hs-varchitect.png" alt="Varchitect">
       <div class="b-label">Varchitect</div>
     </div>
 
-    <!-- Varcheologist — bottom-center — Field tent + dig site -->
+    <!-- Varcheologist — bottom-center -->
     <div class="building" id="b-varcheologist"
-         style="left:22%;top:80%;"
+         style="left:23%;top:80%;"
          onclick="openModal('varcheologist')"
          role="button" tabindex="0" aria-label="Varcheologist">
-      <div class="b-tent">
-        <div class="b-tent-peak"></div>
-        <div class="b-tent-body">
-          <div class="b-tent-opening"></div>
-        </div>
-      </div>
-      <div class="b-dig-site">
-        <div class="b-stake"></div>
-        <div class="b-pit"></div>
-        <div class="b-stake"></div>
-      </div>
+      <img class="building-sprite" src="assets/hs-varcheologist.png" alt="Varcheologist">
       <div class="b-label">Varcheologist</div>
     </div>
 
@@ -203,7 +176,7 @@
 
   <footer class="site-footer">
     <div class="container">
-      <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.13.0</p>
+      <p>&copy; <span id="year"></span> Josh Varley — built with HTML, CSS &amp; hot cocoa. &nbsp;|&nbsp; v0.16.0</p>
     </div>
   </footer>
 

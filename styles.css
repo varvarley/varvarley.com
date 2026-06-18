@@ -35,6 +35,7 @@
      0.15.0 — Homestead overhaul: EarthBound/Pokemon GBA pixel art sprites replace all CSS buildings, tiled grass+cobblestone map
      0.16.0 — Pixel art icons on contact page (email envelope, LinkedIn square, GitHub octocat)
      0.16.3 — Footer tagline: "hot cocoa" → "Raw milk"
+     0.17.0 — Work page redesign: filter bar, featured+supporting card grid, category tints, crosshatch placeholders
    ============================================= */
 
 /* =============================================
@@ -108,6 +109,11 @@
   --color-work-technical-bg: #080e18;  /* deep navy for code/data */
   --color-work-creative-bg:  #180808;  /* deep rose for creative */
   --color-work-people-bg:    #080e0a;  /* deep forest for people */
+
+  /* ── Work card category tints ── */
+  --color-tech-tint:     #05cdc2;   /* teal — technical section accent */
+  --color-creative-tint: #f0ecf1;   /* near-white — creative section accent */
+  --color-people-tint:   #9952de;   /* purple — people section accent */
 }
 
 /* =============================================
@@ -1260,18 +1266,26 @@ ul { margin: 0; padding: 0; list-style: none; }
   pointer-events: none;
 }
 
-/* Category + year badge overlaid on image */
+/* Category + year badge overlaid on image — top-left, tinted per category */
 .work-card-badge {
   position: absolute;
-  bottom: var(--space-1);
-  left: var(--space-2);
+  top: 0.7rem;
+  left: 0.7rem;
   font-family: var(--font-pixel);
-  font-size: 0.32rem;
-  letter-spacing: 0.1em;
-  color: rgba(240,236,248,0.7);
+  font-size: 0.38rem;
+  letter-spacing: 0.05em;
+  padding: 0.4rem 0.55rem;
+  border-radius: var(--radius-sm);
+  background: rgba(8, 6, 10, 0.65);
+  backdrop-filter: blur(4px);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border-warm);
   z-index: 1;
-  text-transform: uppercase;
+  white-space: nowrap;
 }
+.work-card-badge--tech     { color: var(--color-tech-tint);     border-color: color-mix(in srgb, var(--color-tech-tint) 35%, transparent); }
+.work-card-badge--creative { color: var(--color-creative-tint); border-color: color-mix(in srgb, var(--color-creative-tint) 35%, transparent); }
+.work-card-badge--people   { color: var(--color-people-tint);   border-color: color-mix(in srgb, var(--color-people-tint) 35%, transparent); }
 
 /* Card body */
 .work-card-body {
@@ -1323,30 +1337,15 @@ ul { margin: 0; padding: 0; list-style: none; }
   letter-spacing: 0.04em;
 }
 
-/* Per-category image placeholder gradients */
+/* Per-category image placeholder gradients — matched to design tints */
 .work-card--technical {
-  --wc-placeholder-gradient: linear-gradient(
-    135deg,
-    var(--color-work-technical-bg) 0%,
-    #1a2040 40%,
-    var(--color-alpine-violet) 100%
-  );
+  --wc-placeholder-gradient: linear-gradient(150deg, #04211f, var(--color-tech-tint));
 }
 .work-card--creative {
-  --wc-placeholder-gradient: linear-gradient(
-    135deg,
-    var(--color-work-creative-bg) 0%,
-    #2a0e18 40%,
-    var(--color-alpine-rose) 100%
-  );
+  --wc-placeholder-gradient: linear-gradient(150deg, #2a2a2c, var(--color-creative-tint));
 }
 .work-card--people {
-  --wc-placeholder-gradient: linear-gradient(
-    135deg,
-    var(--color-work-people-bg) 0%,
-    #0e2016 40%,
-    var(--color-bg-ground) 100%
-  );
+  --wc-placeholder-gradient: linear-gradient(150deg, #1b1030, var(--color-people-tint));
 }
 
 /* Stagger supporting card reveals */
@@ -1360,6 +1359,118 @@ ul { margin: 0; padding: 0; list-style: none; }
   .work-card--featured { flex-direction: column; min-height: unset; }
   .work-card--featured .work-card-image { aspect-ratio: 16 / 9; }
   .work-card--featured .work-card-title { font-size: 1.7rem; }
+}
+
+/* ── Crosshatch texture overlay on image placeholders ── */
+.work-card-img-crosshatch {
+  position: absolute;
+  inset: 0;
+  background-image: repeating-linear-gradient(
+    135deg,
+    rgba(255,255,255,0.05) 0,
+    rgba(255,255,255,0.05) 2px,
+    transparent 2px,
+    transparent 9px
+  );
+  pointer-events: none;
+}
+
+/* ── Centered filename label inside image area ── */
+.work-card-img-label {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.04em;
+  background: rgba(8, 6, 10, 0.55);
+  padding: 0.4rem 0.7rem;
+  border-radius: var(--radius-sm);
+  backdrop-filter: blur(2px);
+  pointer-events: none;
+  white-space: nowrap;
+  z-index: 1;
+}
+.work-card-img-label--tech     { color: var(--color-tech-tint); }
+.work-card-img-label--creative { color: var(--color-creative-tint); }
+.work-card-img-label--people   { color: var(--color-people-tint); }
+
+/* =============================================
+   WORK PAGE — filter bar + section layout
+   ============================================= */
+
+.work-filter-bar {
+  padding: 1.75rem 0 0;
+}
+
+.work-filter-bar .container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.work-filter-label {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--color-text-muted);
+  letter-spacing: 0.12em;
+  margin-right: 0.4rem;
+  flex-shrink: 0;
+}
+
+.work-filter-chip {
+  font-family: var(--font-pixel);
+  font-size: 0.42rem;
+  letter-spacing: 0.05em;
+  padding: 0.5rem 0.75rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-warm);
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: background 150ms var(--ease-out), color 150ms var(--ease-out), border-color 150ms var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .work-filter-chip:hover {
+    border-color: var(--color-alpine-rose);
+    color: var(--color-text-primary);
+  }
+}
+
+.work-filter-chip:active { transform: scale(0.97); transition: transform 80ms var(--ease-out); }
+
+.work-filter-chip.is-active {
+  background: var(--color-alpine-rose);
+  color: var(--color-bg-primary);
+  border-color: var(--color-alpine-rose);
+}
+
+/* Work sections */
+.work-section {
+  padding: var(--space-5) 0;
+}
+.work-section--alt {
+  background: var(--color-bg-surface);
+}
+.work-section-lede {
+  max-width: 640px;
+  margin: 0 0 var(--space-4);
+  color: var(--color-text-muted);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  line-height: 1.75;
+}
+
+/* Poem section — tighter padding so it doesn't dominate the first screen */
+.poem-section {
+  padding: 2rem 0 1rem;
+}
+.poem-section .poem-stanza {
+  font-size: 0.88rem;
+  line-height: 1.8;
 }
 
 /* Placeholder "coming soon" block */

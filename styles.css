@@ -1213,8 +1213,9 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .work-card--featured .work-card-image {
-  flex: 1;
-  aspect-ratio: unset;
+  flex: 0 0 46%;
+  height: auto;
+  min-height: 260px;
 }
 
 .work-card--featured .work-card-body {
@@ -1230,12 +1231,13 @@ ul { margin: 0; padding: 0; list-style: none; }
   overflow: visible;
 }
 
-/* Image area */
+/* Image area — gradient lives here directly so height is always visible */
 .work-card-image {
   position: relative;
-  aspect-ratio: 16 / 9;
+  height: 190px;           /* explicit height — reliable across all browsers */
   overflow: hidden;
   flex-shrink: 0;
+  background: var(--wc-placeholder-gradient, linear-gradient(135deg, #0a0a14 0%, #1a1a2e 100%));
 }
 
 .work-card-image img {
@@ -1243,13 +1245,6 @@ ul { margin: 0; padding: 0; list-style: none; }
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-/* Gradient placeholder — swap out with <img> when ready */
-.work-card-image-placeholder {
-  position: absolute;
-  inset: 0;
-  background: var(--wc-placeholder-gradient, linear-gradient(135deg, #0a0a14 0%, #1a1a2e 100%));
 }
 
 /* Vignette for badge readability */
@@ -1421,6 +1416,8 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 
 .work-filter-chip {
+  appearance: none;
+  -webkit-appearance: none;
   font-family: var(--font-pixel);
   font-size: 0.42rem;
   letter-spacing: 0.05em;
@@ -1430,6 +1427,7 @@ ul { margin: 0; padding: 0; list-style: none; }
   background: transparent;
   color: var(--color-text-muted);
   cursor: pointer;
+  line-height: 1;
   transition: background 150ms var(--ease-out), color 150ms var(--ease-out), border-color 150ms var(--ease-out);
 }
 

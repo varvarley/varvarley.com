@@ -1,6 +1,6 @@
 /* =============================================
    varvarley.com — global design system
-   Version: 0.16.3
+   Version: 0.19.1
    Version history:
      0.1.0 — Initial lodge aesthetic redesign; homestead map; pixel fonts
      0.1.1 — Brand name → Josh Varley; Orbitron font for brand; nav tab label updates
@@ -36,6 +36,9 @@
      0.16.0 — Pixel art icons on contact page (email envelope, LinkedIn square, GitHub octocat)
      0.16.3 — Footer tagline: "hot cocoa" → "Raw milk"
      0.17.0 — Work page redesign: filter bar, featured+supporting card grid, category tints, crosshatch placeholders
+     0.18.0 — Homestead construction notice banner with animated loading dots
+     0.19.0 — Vartisan Goods creative card: real DCHead image, title, Instagram link
+     0.19.1 — Vartisan Goods card: description and tags filled in
    ============================================= */
 
 /* =============================================
@@ -777,6 +780,48 @@ ul { margin: 0; padding: 0; list-style: none; }
 }
 .resume-link:hover { color: var(--color-text-primary); border-color: rgba(240,236,248,0.4); }
 .resume-link:active { transform: scale(0.97); }
+
+/* =============================================
+   HOMESTEAD CONSTRUCTION NOTICE
+   ============================================= */
+
+.homestead-notice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.35rem;
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-wood-dark);
+  border-top: 3px solid var(--color-wood-mid);
+  border-bottom: 3px solid var(--color-wood-mid);
+  text-align: center;
+}
+.notice-text {
+  font-family: var(--font-pixel);
+  font-size: 0.6rem;
+  color: var(--color-lantern);
+  letter-spacing: 0.1em;
+  margin: 0;
+}
+.notice-sub {
+  font-family: var(--font-pixel);
+  font-size: 0.38rem;
+  color: var(--color-wood-light);
+  margin: 0;
+  letter-spacing: 0.05em;
+}
+.nd1, .nd2, .nd3 {
+  opacity: 0;
+  animation: dot-appear 1.5s ease-in-out infinite;
+}
+.nd1 { animation-delay: 0s; }
+.nd2 { animation-delay: 0.5s; }
+.nd3 { animation-delay: 1.0s; }
+
+@keyframes dot-appear {
+  0%, 100% { opacity: 0; }
+  20%, 80% { opacity: 1; }
+}
 
 /* =============================================
    HOMESTEAD MAP CANVAS
